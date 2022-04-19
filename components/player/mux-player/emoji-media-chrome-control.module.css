@@ -1,0 +1,48 @@
+.controlContainer {
+  display: flex;
+  padding: 10px;
+  border: none;
+  background: rgba(20, 20, 30, 0.7);
+  transition: background 0.15s linear;
+  cursor: pointer;
+}
+
+.controlContainer:hover {
+  background: rgba(50, 50, 70, 0.7);
+}
+
+.reactionsContainer {
+  position: relative;
+}
+
+.reactionsWrapper {
+  padding: 6px 0;
+  position: absolute;
+  top: -62px;
+  right: 0;
+}
+
+.reactionList {
+  display: flex;
+  margin: 0;
+}
+
+.reactionList > LI {
+  list-style-type: none;
+  font-size: 30px;
+  line-height: 30px;
+  margin: 10px 6px;
+  cursor: pointer;
+}
+
+.reactionList > LI > BUTTON {
+  display: flex;
+  cursor: pointer;
+  background-color: unset;
+  border: none;
+  transition: transform 0.15s linear;
+}
+
+.reactionList > LI > BUTTON:hover {
+  transform: scale(1.5);
+}

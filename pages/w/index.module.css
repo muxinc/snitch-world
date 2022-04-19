@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.playerContainer { 
+  width: 890px;
+  height: 489px;
+  position: relative;
+  display: inline-block;
+}
+
+.chatBoxContainer {
+  width: 330px;
+  height: 489px;
+}
