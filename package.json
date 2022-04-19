@@ -35,7 +35,7 @@
     "@testing-library/user-event": "13.5.0",
     "@types/node": "^17.0.24",
     "@types/pubnub": "^4.29.6",
-    "@types/react": "^17.0.43",
+    "@types/react": "^18.0.5",
     "@types/react-tabs": "^2.3.4",
     "@types/validator": "^13.7.2",
     "babel-jest": "^27.5.1",
