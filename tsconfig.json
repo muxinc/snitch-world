@@ -13,6 +13,7 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -21,7 +22,12 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
+      "@/containers/*": ["containers/*"],
+      "@/data/*": ["data/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/layout/*": ["layout/*"],
       "@/pages/*": ["pages/*"],
+      "@/services/*": ["services/*"],
       "@/styles/*": ["styles/*"]
     }
   },
