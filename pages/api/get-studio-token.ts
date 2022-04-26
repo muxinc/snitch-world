@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import jwt from 'jsonwebtoken';
 
 import { getBase } from '@/data/base';
 import { createLivestream, createStudio } from '@/services/mux';
+import { getStudioJwt } from '@/services/mux/utils';
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
@@ -14,32 +14,24 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     const studio = await createStudio(livestream.id);
     console.log('studio', studio);
 
-    const payload = {
-      "sub": studio.id,         
-      "aud": "studio",                 
-      "kid": process.env.MUX_SIGNING_KEY,
-      "exp": Date.now() + (1000 * 60),
-      "role": "host", // "host" or "guest"
-      "pid": "erik.pena"
-    };
-    
-    const privateKey = Buffer.from(process.env.MUX_PRIVATE_KEY!, 'base64');
-
-    const token = jwt.sign(payload, privateKey, { algorithm: 'RS256'});
+    const token = getStudioJwt(studio.id, 'erik.pena', 'host');
 
     console.log('token', token);
 
-    const base = getBase();
-
-    base.insert({
+    const context = {
       livestreamId: livestream.id,
       studioId: studio.id,
       playbackId: livestream.playback_ids[0].id
-    });
+    }
 
-    res.status(200).json({ token });
+    const base = await getBase();
+
+    await base.insert(context);
+
+    res.status(200).json({ token, ...context });
   } catch(err) {
     console.error(err);
+    // TODO - Handle these errors more gracefully
     res.status(500).json({ isException: true, message: 'Unknown issue' });
   }
 }

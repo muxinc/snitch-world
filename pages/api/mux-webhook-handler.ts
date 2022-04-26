@@ -17,10 +17,12 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
       state
     };
 
-    getBase().update(studioInstance);
+    (await getBase()).update(studioInstance);
   }
 
   // TODO - Implement a webhook handler for disabled to trigger deletion of livestream/studio
+  // TODO - Implement error response for signature validation
+  // TODO - Implement error responses for general issues
 
   res.status(200).json({ accepted: true });
 }

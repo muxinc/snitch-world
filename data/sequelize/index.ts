@@ -15,15 +15,17 @@ class SequelizeBase extends DataBase {
       storage: ':memory:',
       models: [ StudioInstanceModel ],
     });
-    
-    this.sequelize.sync({ force: true });
   }
+
+  init = async () => {
+    await this.sequelize.sync();
+  };
 
   select = async (studioInstance:StudioInstance) => {
     return await StudioInstanceModel.findOne({
       where: { ...studioInstance }
     });
-  }
+  };
 
   update = async (studioInstance:StudioInstance) => {
     const { livestreamId } = studioInstance;

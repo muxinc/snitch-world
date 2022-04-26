@@ -1,6 +1,7 @@
 import { StudioInstance } from "./types";
 
 export abstract class DataBase {
+  abstract init: () => Promise<void>;
   abstract select: (studioInstance:StudioInstance) => Promise<StudioInstance | null>;
   abstract update: (studioInstance:StudioInstance) => Promise<number>;
   abstract insert: (studioInstance:StudioInstance) => Promise<void>;

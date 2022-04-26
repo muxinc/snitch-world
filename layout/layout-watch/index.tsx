@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './index.module.css';
 
-const LayoutWatch = (props: React.PropsWithChildren<React.ReactNode>) => {
+const LayoutWatch = (props:React.PropsWithChildren<{}>) => {
   const { children } = props;
 
   return (

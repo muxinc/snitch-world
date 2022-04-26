@@ -4,8 +4,11 @@ import { StudioInstance } from './types';
 
 let base:DataBase;
 
-const getBase = ():DataBase => {
-  if(!base) base = new SequelizeBase();
+const getBase = async (): Promise<DataBase> => {
+  if(!base) {
+    base = new SequelizeBase();
+    await base.init();
+  }
 
   return base;
 };

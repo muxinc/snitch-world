@@ -47,3 +47,12 @@
   color: #fff;
   padding: .5rem 1rem;
 }
+
+.infoTabRow {
+  display: flex;
+  margin: 1.5rem 0;
+}
+
+.infoTabCol {
+  flex: 1;
+}

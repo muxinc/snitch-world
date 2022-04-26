@@ -28,7 +28,8 @@
       "@/layout/*": ["layout/*"],
       "@/pages/*": ["pages/*"],
       "@/services/*": ["services/*"],
-      "@/styles/*": ["styles/*"]
+      "@/styles/*": ["styles/*"],
+      "@/types/*": ["types/*"]
     }
   },
   "include": [

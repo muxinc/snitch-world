@@ -5,34 +5,55 @@ import studioEmbed from '@mux/studio-embed';
 
 import StudioManage from '@/containers/studio-manage';
 import style from './index.module.css';
+import { StatCounts } from '@/types/mux';
 
 const Studio = () => {
   const studioRef = React.useRef<HTMLIFrameElement>(null);
-  const [studioToken, setStudioToken] = React.useState();
-  const [studio, setStudio] = React.useState<any>(null);
+  const timerRef = React.useRef<NodeJS.Timer>();
 
+  const [studioContext, setStudioContext] = React.useState<any>();
+  const [studio, setStudio] = React.useState<any>(undefined);
+  const [statCounts, setStatCounts] = React.useState<StatCounts>();
+
+  // HACK - Full perms, should be scoped (post-TMI?)
   const client = new Pubnub({
     publishKey: process.env.NEXT_PUBLIC_PUBNUB_PUBLISH_KEY,
     subscribeKey: process.env.NEXT_PUBLIC_PUBNUB_SUBSCRIBER_KEY!,
     uuid: 'userId',
   });
 
+  const handleOnInterval = async () => {
+    const { playbackId } = studioContext;
+    const response = await fetch(`./api/get-stat-counts?playbackId=${playbackId}`);
+    const json = await response.json();
+
+    setStatCounts(json.statCounts[0]);
+    console.log(json);
+  };
+
   React.useEffect(() => {
     fetch('./api/get-studio-token')
       .then((result) => result.json())
-      .then(({ token }) => setStudioToken(token));
+      .then((context) => setStudioContext(context));
+
+      return () => {
+        // HACK - This is dumb.
+        clearInterval(timerRef.current as NodeJS.Timeout);
+      };
   }, []);
 
   React.useEffect(() => {
-    if(!studioToken) return;
+    // If no token is available or if studio is already set
+    if(!studioContext || studio) return;
 
     try {
-      studioEmbed.init(studioToken, studioRef.current!)
-        .then((studio) => {
+      studioEmbed.init(studioContext.token, studioRef.current, { autoSize: false })
+        .then((studio:any) => {
           setStudio(studio);
+          timerRef.current = setInterval(handleOnInterval, 10000);
         });
     } catch(err) { console.log(err); }
-  }, [studioToken]);
+  }, [studioContext]);
 
   // TODO - Need to implement user activated livstream/studio delete
   const handleOnLiveStreamEnded = (t: any, t2:any, t3: any) => {
@@ -54,7 +75,9 @@ const Studio = () => {
           <div ref={studioRef} className={style.studio} />
         </div>
         <div className={style.studioManageContainer}>
-          <StudioManage publishId='1234' />
+          { studioContext &&
+            <StudioManage publishId={studioContext.playbackId} statCounts={statCounts} />
+          }
         </div>
       </div>
     </PubNubProvider>

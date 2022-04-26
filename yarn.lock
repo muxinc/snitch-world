@@ -583,13 +583,10 @@
     hls.js "1.1.5"
     mux-embed "^4.7.0"
 
-"@mux/studio-embed@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@mux/studio-embed/-/studio-embed-0.2.3.tgz#2921d7381a689a56a8d86f5bf6ea0368d0f9e26a"
-  integrity sha512-a1YSJ7SLVSIN2t3cH0SNq6Tp2L7UyUi42vx9LgYVvM8H9rT1J6cHnT5wHGXJ+mpY6TvvqUhCFG1lvOXE5kVk0Q==
-  dependencies:
-    enhanced-resolve "^5.8.3"
-    semver "^7.3.5"
+"@mux/studio-embed@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@mux/studio-embed/-/studio-embed-0.2.4.tgz#dd257135ef3e7989e8de6148262d91efdb989b9c"
+  integrity sha512-8YH5fPHhFG/5raxpW2Dp8YbYZAIKd0FKF7nm7aIy6UYgtIdy0o0cRMAqeMr0eQnqcd3WhWtkHK6nfAaI2kjr7Q==
 
 "@next/env@12.1.5":
   version "12.1.5"
@@ -1971,14 +1968,6 @@ end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-enhanced-resolve@^5.8.3:
-  version "5.9.3"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.9.3.tgz#44a342c012cbc473254af5cc6ae20ebd0aae5d88"
-  integrity sha512-Bq9VSor+kjvW3f9/MiiR4eE3XYgOl7/rS8lnSxbRbF3kS0B2r+Y9w5krBWxZgDxASVZbdYrn5wT4j/Wb0J9qow==
-  dependencies:
-    graceful-fs "^4.2.4"
-    tapable "^2.2.0"
-
 env-paths@^2.2.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/env-paths/-/env-paths-2.2.1.tgz#420399d416ce1fbe9bc0a07c62fa68d67fd0f8f2"
@@ -2659,7 +2648,7 @@ graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.9:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.9.tgz#041b05df45755e587a24942279b9d113146e1c96"
   integrity sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==
 
-graceful-fs@^4.2.4, graceful-fs@^4.2.6:
+graceful-fs@^4.2.6:
   version "4.2.10"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.10.tgz#147d3a006da4ca3ce14728c7aefc287c367d7a6c"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
@@ -5075,11 +5064,6 @@ symbol-tree@^3.2.4:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
-
-tapable@^2.2.0:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.1.tgz#1967a73ef4060a82f12ab96af86d52fdb76eeca0"
-  integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
 
 tar@^6.0.2, tar@^6.1.11, tar@^6.1.2:
   version "6.1.11"

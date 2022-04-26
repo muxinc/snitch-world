@@ -21,10 +21,13 @@ interface Props {
 const Player = (props: Props) => {
   const { channel } = props;
 
+  if(!channel) return null;
+
   return (
     <MediaController className={styles.video} autohide="-1">
       <MuxVideo
-        playbackId="DS00Spx1CV902MCtPj5WknGlR102V5HFkDe"
+        src={`${process.env.NEXT_PUBLIC_MUX_STREAM_BASE_URL}/${channel}.m3u8`}
+        envKey={process.env.NEXT_PUBLIC_MUX_ENV_KEY}
         metadata={{
           video_id: 'video-id-123456',
           video_title: 'Super Interesting Video',

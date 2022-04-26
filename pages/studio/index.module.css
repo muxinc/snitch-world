@@ -13,6 +13,11 @@
   border: 0;
 }
 
+.studio > IFRAME {
+  width: 100%;
+  height: 100%;
+}
+
 .studioManageContainer {
   display: flex;
   width: 330px;
