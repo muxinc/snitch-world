@@ -32,6 +32,6 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
   } catch(err) {
     console.error(err);
     // TODO - Handle these errors more gracefully
-    res.status(500).json({ isException: true, message: 'Unknown issue' });
+    res.status(500).json({ isException: true, message: 'Unknown issue', error: err });
   }
 }
