@@ -1,5 +1,5 @@
 import got from 'got';
-import { getDataJwt } from './utils';
+import { getDataJwt } from '@/utils/secrets';
 
 const client = got.extend({
   prefixUrl: process.env.MUX_STATS_BASE_URL

@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { getBase } from '@/data/base';
 import { createLivestream, createStudio } from '@/services/mux';
-import { getStudioJwt } from '@/services/mux/utils';
+import { getStudioJwt } from '@/utils/secrets';
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
