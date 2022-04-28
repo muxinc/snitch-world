@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { publishLivestreamState } from '@/services/pubnub';
+import { signalLivestreamState } from '@/services/pubnub';
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
   console.log('webhook_payload', req.body);
@@ -16,7 +16,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
 
   const channel = playback_ids[0].id;
 
-  const pubnubResponse = await publishLivestreamState(channel, status);
+  const pubnubResponse = await signalLivestreamState(channel, status);
 
   // TODO - Implement error responses for general issues
 

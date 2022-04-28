@@ -8,11 +8,11 @@ const client = new Pubnub({
   uuid: 'snitch-world',
 });
 
-const publishLivestreamState = async (channel:string, status:string) => {
+const signalLivestreamState = async (channel:string, status:string) => {
   const state = LivestreamStateArray.find(stateEnum => stateEnum === status);
 
-  const response = await client.publish({
-    channel: `${channel}-reactions`,
+  const response = await client.signal({
+    channel: `${channel}-livestream_state`,
     message: { state }
   });
 
@@ -20,5 +20,5 @@ const publishLivestreamState = async (channel:string, status:string) => {
 };
 
 export {
-  publishLivestreamState
+  signalLivestreamState
 };

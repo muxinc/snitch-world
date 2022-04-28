@@ -28,6 +28,7 @@ const Player = (props: Props) => {
       <MuxVideo
         src={`${process.env.NEXT_PUBLIC_MUX_STREAM_BASE_URL}/${channel}.m3u8`}
         envKey={process.env.NEXT_PUBLIC_MUX_ENV_KEY}
+        beaconCollectionDomain={process.env.NEXT_PUBLIC_MUX_LITIX_DOMAIN}
         metadata={{
           video_id: 'video-id-123456',
           video_title: 'Super Interesting Video',

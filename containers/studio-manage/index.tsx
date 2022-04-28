@@ -4,6 +4,8 @@ import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import ChatBox from '@/components/chat-box';
 import style from './index.module.css';
 import { StatCounts } from '@/types/mux';
+import { usePubNub } from 'pubnub-react';
+import { LivestreamStateEnum } from '@/services/pubnub/types';
 
 interface Props {
   publishId: string;
@@ -14,6 +16,18 @@ const StudioManage = (props:Props) => {
   const { publishId, statCounts } = props;
 
   const [selectedTab, setSelectedTab] = React.useState<number>(0);
+  const [state, setState] = React.useState<string>(LivestreamStateEnum.idle);
+
+  const client = usePubNub();
+  client.addListener({
+    signal: ({ message }) => setState(message.state)
+  });
+  client.subscribe({ channels: [`${publishId}-livestream_state`]});
+
+  React.useEffect(() => {
+    // TODO - When the state falls into a 'disabled' state, we need to
+    // nav the user to a "Thank you for using Snitch" patge
+  }, [state]);
 
   return (
     <div className={style.container}>
@@ -39,7 +53,7 @@ const StudioManage = (props:Props) => {
             <div className={style.infoTabRow}>
               <div className={style.infoTabCol}>
                 <div>Status</div>
-                <div>Idle</div>
+                <div>{state}</div>
               </div>
               <div className={style.infoTabCol}>
                 <div>Engagement stats</div>
