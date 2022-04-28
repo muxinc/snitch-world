@@ -4,8 +4,8 @@ import { PubNubProvider } from 'pubnub-react';
 import studioEmbed from '@mux/studio-embed';
 
 import StudioManage from '@/containers/studio-manage';
-import style from './index.module.css';
 import { StatCounts } from '@/types/mux';
+import style from './index.module.css';
 
 const Studio = () => {
   const studioRef = React.useRef<HTMLIFrameElement>(null);

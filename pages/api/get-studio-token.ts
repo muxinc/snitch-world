@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getBase } from '@/data/base';
 import { createLivestream, createStudio } from '@/services/mux';
 import { getStudioJwt } from '@/utils/secrets';
 
@@ -19,16 +18,13 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     console.log('token', token);
 
     const context = {
+      token,
       livestreamId: livestream.id,
       studioId: studio.id,
       playbackId: livestream.playback_ids[0].id
-    }
+    };
 
-    const base = await getBase();
-
-    await base.insert(context);
-
-    res.status(200).json({ token, ...context });
+    res.status(200).json(context);
   } catch(err) {
     console.error(err);
     // TODO - Handle these errors more gracefully
