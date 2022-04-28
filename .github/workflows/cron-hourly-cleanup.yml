@@ -1,0 +1,13 @@
+name: cron-hourly-cleanup
+on:
+  schedule:
+    - cron: '*/60 * * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: hourly-cron-job
+        run: |
+          curl --request POST \
+          --url 'https://snitch-world.vercel.app/api/cleanup' \
+          --header 'Authorization: Bearer ${{ secrets.ACTION_KEY }}'
