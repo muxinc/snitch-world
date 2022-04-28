@@ -24,6 +24,7 @@ const StudioManage = (props:Props) => {
         <Tabs
           className={style.tabs}
           selectedIndex={selectedTab}
+          forceRenderTabPanel={true}
           onSelect={(index:number) => setSelectedTab(index)}
         >
           <TabList className={style.tabList}>
@@ -31,7 +32,10 @@ const StudioManage = (props:Props) => {
             <Tab selectedClassName={style.selectedTab}>Chat</Tab>
             <Tab selectedClassName={style.selectedTab}>Polls</Tab>
           </TabList>
-          <TabPanel selectedClassName={style.visibleTabPanel}>
+          <TabPanel
+            className={selectedTab !== 0 ? style.invisibleTabPanel : ''}
+            selectedClassName={style.visibleTabPanel}
+          >
             <div className={style.infoTabRow}>
               <div className={style.infoTabCol}>
                 <div>Status</div>
@@ -59,10 +63,18 @@ const StudioManage = (props:Props) => {
               </div>
             </div>
           </TabPanel>
-          <TabPanel selectedClassName={style.visibleTabPanel}>
+          <TabPanel
+            className={selectedTab !== 1 ? style.invisibleTabPanel : ''}
+            selectedClassName={style.visibleTabPanel}
+          >
             <ChatBox channel={publishId} />
           </TabPanel>
-          <TabPanel selectedClassName={style.visibleTabPanel}>Test 3</TabPanel>
+          <TabPanel
+            className={selectedTab !== 2 ? style.invisibleTabPanel : ''}
+            selectedClassName={style.visibleTabPanel}
+          >
+            Test 3
+          </TabPanel>
         </Tabs>
       </div>
     </div>

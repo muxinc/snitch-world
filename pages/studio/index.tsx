@@ -19,7 +19,7 @@ const Studio = () => {
   const client = new Pubnub({
     publishKey: process.env.NEXT_PUBLIC_PUBNUB_PUBLISH_KEY,
     subscribeKey: process.env.NEXT_PUBLIC_PUBNUB_SUBSCRIBER_KEY!,
-    uuid: 'userId',
+    uuid: 'Content creator',
   });
 
   const handleOnInterval = async () => {

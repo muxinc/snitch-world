@@ -48,6 +48,10 @@
   padding: .5rem 1rem;
 }
 
+.invisibleTabPanel {
+  display: none;
+}
+
 .infoTabRow {
   display: flex;
   margin: 1.5rem 0;
