@@ -1,6 +1,8 @@
 .container {
   height: 100%;
   display: flex;
+  background-color: #444;
+  font-family: Akkurat, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 .studioContainer {

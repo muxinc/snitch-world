@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import Pubnub from 'pubnub';
 import { PubNubProvider } from 'pubnub-react';
 import studioEmbed from '@mux/studio-embed';
@@ -70,6 +71,11 @@ const Studio = () => {
 
   return (
     <PubNubProvider client={client}>
+      <Head>
+        <title>Snitch - Studio</title>
+        {/* TODO - We should probably bring these fonts local to the project */}
+        <link href="https://static.mux.com/fonts/fonts.css" rel="stylesheet" key="test"/>
+      </Head>
       <div className={style.container}>
         <div className={style.studioContainer}>
           <div ref={studioRef} className={style.studio} />

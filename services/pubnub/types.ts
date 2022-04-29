@@ -13,3 +13,14 @@ export interface StudioStateMessage {
   playbackId?: string;
   state?: string;
 };
+
+export enum Reaction {
+  '🙂' = '🙂',
+  '😂' = '😂',
+  '😍' = '😍',
+  '😢' = '😢',
+  '😱' = '😱',
+  '😡' = '😡'
+};
+
+export const ReactionArray = Object.values(Reaction);

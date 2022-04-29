@@ -5,7 +5,7 @@ import { PubNubProvider } from 'pubnub-react';
 
 import ChatBox from '@/components/chat-box';
 import Player from '@/components/player/mux-player';
-import ReactionPresenter from '@/components/reactions/presenter';
+import { ReactionPresenter } from '@/components/reactions';
 import LayoutWatch from '@/layout/layout-watch';
 import style from './index.module.css';
 
