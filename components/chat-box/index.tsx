@@ -29,10 +29,13 @@ const ChatBox = (props: Props) => {
   return (
     <PubNubProvider client={pubnubRef.current}>
       <div className={styles.main}>
-        <Chat currentChannel={`${channel}-chat`} theme={theme}>
-          <MessageList />
-          <MessageInput />
-        </Chat>
+        { 
+          typeof window !== 'undefined' && 
+          <Chat currentChannel={`${channel}-chat`} theme={theme}>
+            <MessageList />
+            <MessageInput />
+          </Chat>
+        }
       </div>
     </PubNubProvider>
   );
