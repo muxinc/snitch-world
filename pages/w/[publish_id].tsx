@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 
 import ContextProvider from 'context/';
 import LayoutWatch from '@/layout/layout-watch';
@@ -8,6 +9,11 @@ import { ReactionPresenter } from '@/components/reactions';
 import ChatBox from '@/components/chat-box';
 import JoinTheChat from '@/components/join-the-chat';
 import style from './index.module.css';
+
+const ChatBoxNoSSR = dynamic(
+  () => import('@/components/chat-box'),
+  { ssr: false }
+)
 
 const Watch = () => {
   const [publishId, setPublishId] = React.useState<string>();
@@ -29,7 +35,7 @@ const Watch = () => {
           <ReactionPresenter publishId={publishId} />
         </div>
         <div className={style.chatBoxContainer}>
-          <ChatBox channel={publishId} />
+          <ChatBoxNoSSR channel={publishId} />
           <JoinTheChat />
         </div>
       </div>
