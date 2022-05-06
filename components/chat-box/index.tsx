@@ -31,7 +31,7 @@ const ChatBox = (props: Props) => {
       <div className={styles.main}>
         <Chat currentChannel={`${channel}-chat`} theme={theme}>
           <MessageList />
-          { !disableInput && <MessageInput /> }
+          <MessageInput />
         </Chat>
       </div>
     </PubNubProvider>
