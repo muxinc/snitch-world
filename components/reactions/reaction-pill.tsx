@@ -1,6 +1,6 @@
-import { Reaction } from '@/services/pubnub/types';
 import React from 'react';
 
+import { Reaction } from '@/context/types';
 import style from './index.module.css';
 
 interface Props {

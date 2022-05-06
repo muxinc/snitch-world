@@ -1,8 +1,10 @@
 import React from 'react';
-import PubNub from 'pubnub';
-import { PubNubProvider, usePubNub } from 'pubnub-react';
+import Pubnub from 'pubnub';
 import Particles from 'react-tsparticles';
 import type { Container, ISourceOptions } from "tsparticles";
+
+import usePubnubManager from '@/hooks/use-pubnub-manager';
+import style from './index.module.css';
 
 const options:ISourceOptions = {
   fpsLimit: 120,
@@ -15,21 +17,28 @@ const options:ISourceOptions = {
 };
 
 interface Props {
-  channel: string;
+  publishId: string;
 }
 
 const ReactionPresenter = (props:Props) => {
-  const { channel } = props;
+  const { publishId } = props;
 
   const containerRef = React.useRef<Container>();
+
+  const { addMessageListener } = usePubnubManager();
+
+  React.useEffect(() => {
+    addMessageListener(handleReaction);
+  }, []);
 
   const particlesLoaded = async (container:Container) => {
     containerRef.current = container;
   };
 
-  const handleReaction = (event:any) => { console.log(event);
+  const handleReaction = ({ message, channel }: Pubnub.MessageEvent) => {
     // Don't trigger new particles while page isn't in focus
     if(containerRef.current?.pageHidden) return;
+    if(channel !== `${publishId}-reactions`) return;
 
     const particle:any = {
       life: {
@@ -66,7 +75,7 @@ const ReactionPresenter = (props:Props) => {
       shape: {
         options: {
           char: {
-            value: ['🙂', '😂', '😍', '🤗', '😱', '😢', '😡'],
+            value: [message.reaction],
             font: 'Verdana',
             weight: 400,
             fill: true
@@ -76,15 +85,16 @@ const ReactionPresenter = (props:Props) => {
       }
     };
 
-    // containerRef.current?.particles.addParticle(undefined, particle);
+    containerRef.current?.particles.addParticle(undefined, particle);
   };
 
   return (
-    <Particles
-      style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }}
-      options={options}
-      loaded={particlesLoaded}
-    />
+    <div className={style.presenterContainer}>
+      <Particles
+        options={options}
+        loaded={particlesLoaded}
+      />
+    </div>
   );
 }
 

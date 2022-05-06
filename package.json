@@ -9,12 +9,15 @@
   },
   "dependencies": {
     "@mux-elements/mux-video-react": "^0.4.2",
+    "@mux/mux-node": "^5.0.0-rc.5",
     "@mux/studio-embed": "^0.2.4",
     "@pubnub/react-chat-components": "^0.8.0",
     "@types/jsonwebtoken": "^8.5.8",
+    "cookies-next": "^2.0.4",
     "got": "^12.0.3",
     "jsonwebtoken": "^8.5.1",
     "media-chrome": "^0.5.4",
+    "metascraper": "^5.29.3",
     "next": "^12.1.5",
     "normalize.css": "^8.0.1",
     "pubnub": "^5.0.1",
@@ -22,8 +25,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-tabs": "^5.1.0",
-    "react-tsparticles": "^1.43.1",
-    "tsparticles": "^1.43.1"
+    "react-tsparticles": "1.42.4"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.3",

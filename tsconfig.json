@@ -23,6 +23,7 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/containers/*": ["containers/*"],
+      "@/context/*": ["context/*"],
       "@/hooks/*": ["hooks/*"],
       "@/layout/*": ["layout/*"],
       "@/pages/*": ["pages/*"],

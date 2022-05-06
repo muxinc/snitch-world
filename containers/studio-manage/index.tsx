@@ -1,14 +1,14 @@
 import React from 'react';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import Pubnub from 'pubnub';
-import { usePubNub } from 'pubnub-react';
 
 import ChatBox from '@/components/chat-box';
 import { StatCounts } from '@/types/mux';
-import { LivestreamStateEnum, ReactionArray } from '@/services/pubnub/types';
+import { LivestreamStateEnum, ReactionArray } from '@/context/types';
 import { ReactionPill } from '@/components/reactions';
-import style from './index.module.css';
 import ButtonDropdown from '@/components/button-dropdown';
+import usePubnubManager from '@/hooks/use-pubnub-manager';
+import style from './index.module.css';
 
 interface Props {
   publishId: string;
@@ -24,34 +24,17 @@ const StudioManage = (props:Props) => {
     ReactionArray.reduce((a, v) => ({ ...a, [v]: 0}), {})
   );
 
-  const handlePubnubOnSignal = ({ message }: Pubnub.SignalEvent) => setState(message.state);
+  const handlePubnubOnSignal = ({ message }: Pubnub.SignalEvent) => message.state && setState(message.state);
 
   const handlePubnubOnMessage = ({ message }: Pubnub.MessageEvent) => {
     setReactions((prev) => ({ ...prev, [message.reaction]: prev[message.reaction] + 1 }));
   };
 
-  const client = usePubNub();
+  const { addMessageListener, addSignalListener } = usePubnubManager();
 
   React.useEffect(() => {
-    client.addListener({
-      signal: handlePubnubOnSignal,
-      message: handlePubnubOnMessage
-    });
-  
-    client.subscribe({
-      channels: [
-        `${publishId}-livestream_state`,
-        `${publishId}-reactions`
-      ]
-    });
-
-    return () => {
-      client.unsubscribeAll();
-      client.removeListener({
-        signal: handlePubnubOnSignal,
-        message: handlePubnubOnMessage
-      });
-    };
+    addMessageListener(handlePubnubOnMessage);
+    addSignalListener(handlePubnubOnSignal);
   }, []);
 
   React.useEffect(() => {

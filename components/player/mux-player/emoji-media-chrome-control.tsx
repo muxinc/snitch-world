@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { usePubNub } from 'pubnub-react';
 
-import { ReactionArray } from '@/services/pubnub/types';
+import { ReactionArray } from '@/context/types';
 import styles from './emoji-media-chrome-control.module.css';
 
 interface Props {

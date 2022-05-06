@@ -14,7 +14,7 @@
   background-color: #666;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .topBar > DIV {
