@@ -28,7 +28,7 @@ interface ContextProviderProps {
 const ContextProvider = (props:React.PropsWithChildren<ContextProviderProps>) => {
   const {
     publishId,
-    uuid = getCookie('uuid')?.toString(),
+    uuid = getCookie('uuid')?.toString() || 'anonymous',
     children
   } = props;
 

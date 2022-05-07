@@ -6,7 +6,6 @@ import ContextProvider from 'context/';
 import LayoutWatch from '@/layout/layout-watch';
 import Player from '@/components/player/mux-player';
 import { ReactionPresenter } from '@/components/reactions';
-import ChatBox from '@/components/chat-box';
 import JoinTheChat from '@/components/join-the-chat';
 import style from './index.module.css';
 
