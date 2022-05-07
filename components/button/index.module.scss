@@ -1,0 +1,25 @@
+@import './../../style-vars.scss';
+
+.button {
+  font-family: $font_secondary;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: underline;
+  color: $color_purple2;
+  background-color: $color_white;
+  border-color: $color_purple1;
+  border-width: 4px;
+  border-style: solid;
+  border-radius: 14px;
+  padding: 8px 30px;
+}
+
+.button:hover {
+  background-color: lighten($color_purple1, 30%);
+}
+
+.button:active {
+  background-color: $color_purple1;
+  color: $color_white;
+  border-color: $color_white;
+}

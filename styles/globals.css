@@ -1,6 +1,9 @@
 html, body, body > div {
   height: 100%;
 }
+
+a { color: inherit; } 
+
 :root {
   --chat--dark__background--1: none !important;
   --chat--dark__hover--1: #49DFC6 !important;

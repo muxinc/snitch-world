@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 
 import ContextProvider from 'context/';
-import LayoutWatch from '@/layout/layout-watch';
+import LayoutDefault from '@/layout/layout-default';
 import Player from '@/components/player/mux-player';
 import { ReactionPresenter } from '@/components/reactions';
 import JoinTheChat from '@/components/join-the-chat';
@@ -27,7 +27,7 @@ const Watch = () => {
   
   return (
     <ContextProvider publishId={publishId}>
-      <LayoutWatch>
+      <LayoutDefault>
         <div className={style.container}>
         <div className={style.playerContainer}>
           <Player publishId={publishId} />
@@ -39,7 +39,7 @@ const Watch = () => {
         </div>
       </div>
       <div>hello</div>
-      </LayoutWatch>
+      </LayoutDefault>
     </ContextProvider>
   );
 };

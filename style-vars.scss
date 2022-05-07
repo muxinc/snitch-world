@@ -1,0 +1,36 @@
+
+/*
+*   FONTS
+*/
+// TODO - We should probably bring these fonts local to the project 
+@import url(https://static.mux.com/fonts/fonts.css);
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
+
+@font-face {
+  font-family: "T1 Korium";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/T1Korium-2Kg-vnscsu.otf") format("opentype");
+};
+
+$font_primary: 'Space Grotesk', sans-serif;
+$font_secondary: 'Space Mono', monospace;
+$font_snitch: 'T1 Korium';
+
+/*
+*   IMAGES
+*/
+$purple_bubble_image: '/purple.png';
+
+
+/*
+*   COLORS
+*/
+$color_white: #fff;
+$color_black: #000;
+$color_gray16: #292929;
+$color_gray22: #383838;
+$color_purple1: #9620D8;
+$color_purple2: #892AD0;

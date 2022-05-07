@@ -1,7 +1,10 @@
+@import './../../style-vars.scss';
+
 .main {
   height: 100%;
   display: flex;
   flex-direction: column;
+  font-family: $font_primary;
 }
 
 .body {
