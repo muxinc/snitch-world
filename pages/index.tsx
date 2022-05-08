@@ -7,7 +7,7 @@ import StartStreamingModal from '@/components/start-streaming-modal';
 
 export default function Home() {
   return (
-    <LayoutDefault>
+    <LayoutDefault hideHeaderLogo={true}>
       <Head>
         <title>Snitch World</title>
         <meta name="description" content="Snitch World" />

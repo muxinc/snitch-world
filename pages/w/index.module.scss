@@ -1,0 +1,26 @@
+@import './../../style-vars.scss';
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  grid-template-rows: min-content;
+  gap: 0px 80px;
+  grid-auto-flow: row;
+  grid-template-areas: ". .";
+  margin: auto 0;
+
+}
+
+.playerContainer { 
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+  position: relative;
+  display: inline-block;
+  box-shadow: 0px 0px 30px 5px rgba($color_purple1, 0.9);
+}
+
+.chatBoxContainer {
+  height: 100%;
+  position: relative;
+}

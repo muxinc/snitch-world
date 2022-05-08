@@ -7,7 +7,7 @@ import LayoutDefault from '@/layout/layout-default';
 import Player from '@/components/player/mux-player';
 import { ReactionPresenter } from '@/components/reactions';
 import JoinTheChat from '@/components/join-the-chat';
-import style from './index.module.css';
+import style from './index.module.scss';
 
 const ChatBoxNoSSR = dynamic(
   () => import('@/components/chat-box'),
@@ -29,16 +29,15 @@ const Watch = () => {
     <ContextProvider publishId={publishId}>
       <LayoutDefault>
         <div className={style.container}>
-        <div className={style.playerContainer}>
-          <Player publishId={publishId} />
-          <ReactionPresenter publishId={publishId} />
+          <div className={style.playerContainer}>
+            <Player publishId={publishId} />
+            <ReactionPresenter publishId={publishId} />
+          </div>
+          <div className={style.chatBoxContainer}>
+            <ChatBoxNoSSR channel={publishId} />
+            <JoinTheChat />
+          </div>
         </div>
-        <div className={style.chatBoxContainer}>
-          <ChatBoxNoSSR channel={publishId} />
-          <JoinTheChat />
-        </div>
-      </div>
-      <div>hello</div>
       </LayoutDefault>
     </ContextProvider>
   );

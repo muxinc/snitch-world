@@ -4,13 +4,17 @@ import React from 'react';
 
 import styles from './index.module.scss';
 
-const LayoutDefault = (props:React.PropsWithChildren<{}>) => {
-  const { children } = props;
+interface Props {
+  hideHeaderLogo?: boolean;
+}
+
+const LayoutDefault = (props:React.PropsWithChildren<Props>) => {
+  const { hideHeaderLogo, children } = props;
 
   return (
     <>
       <div className={styles.main}>
-        <Header />
+        <Header hideLogo={hideHeaderLogo} />
         <div className={styles.body}>
           {children}
         </div>
@@ -18,7 +22,7 @@ const LayoutDefault = (props:React.PropsWithChildren<{}>) => {
       </div>
       <style jsx global>{`
         body {
-          background: url(./purple.png) no-repeat center center;
+          background: url(/purple.png) no-repeat center center;
           background-size: cover;
           background-attachment: fixed;
           background-size: cover;
