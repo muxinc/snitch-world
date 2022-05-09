@@ -28,14 +28,16 @@ const Watch = () => {
   return (
     <ContextProvider publishId={publishId}>
       <LayoutDefault>
-        <div className={style.container}>
-          <div className={style.playerContainer}>
-            <Player publishId={publishId} />
-            <ReactionPresenter publishId={publishId} />
-          </div>
-          <div className={style.chatBoxContainer}>
-            <ChatBoxNoSSR channel={publishId} />
-            <JoinTheChat />
+        <div className={style.wrapper}>
+          <div className={style.container}>
+            <div className={style.playerContainer}>
+              <Player publishId={publishId} />
+              <ReactionPresenter publishId={publishId} />
+            </div>
+            <div className={style.chatBoxContainer}>
+              <ChatBoxNoSSR channel={publishId} />
+              <JoinTheChat />
+            </div>
           </div>
         </div>
       </LayoutDefault>

@@ -34,3 +34,12 @@ $color_gray16: #292929;
 $color_gray22: #383838;
 $color_purple1: #9620D8;
 $color_purple2: #892AD0;
+
+
+/*
+*   BREAKPOINTS (MIN)
+*/
+$breakpoint_sm: 481px;  // iPads & tablets
+$breakpoint_md: 888px;  // Laptop
+$breakpoint_lg: 1025px; // Desktops
+$breakpoint_xl: 1201px; // TVs

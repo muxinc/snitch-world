@@ -61,10 +61,12 @@
   background-color: #323232;
   color: #fff;
   padding: .5rem 1rem;
+  position: relative;
 }
 
 .invisibleTabPanel {
   display: none;
+  position: relative;
 }
 
 .infoTabRow {
