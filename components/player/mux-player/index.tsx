@@ -25,7 +25,6 @@ const Player = (props: Props) => {
 
   return (
     <>
-      <ReactionPresenter publishId={publishId} />
       <MediaController className={styles.video} autohide="-1">
         <MuxVideo
           src={`${process.env.NEXT_PUBLIC_MUX_STREAM_BASE_URL}/${publishId}.m3u8`}
