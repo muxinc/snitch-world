@@ -12,7 +12,7 @@ import style from './index.module.scss';
 const ChatBoxNoSSR = dynamic(
   () => import('@/components/chat-box'),
   { ssr: false }
-)
+);
 
 const Watch = () => {
   const [publishId, setPublishId] = React.useState<string>();

@@ -1,4 +1,5 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import Pubnub from 'pubnub';
 
@@ -9,6 +10,11 @@ import { ReactionPill } from '@/components/reactions';
 import ButtonDropdown from '@/components/button-dropdown';
 import usePubnubManager from '@/hooks/use-pubnub-manager';
 import style from './index.module.css';
+
+const ChatBoxNoSSR = dynamic(
+  () => import('@/components/chat-box'),
+  { ssr: false }
+);
 
 interface Props {
   publishId: string;
@@ -79,7 +85,6 @@ const StudioManage = (props:Props) => {
             </div>
             <div className={style.infoTabRow}>
               <div className={style.infoTabCol}>
-                {/* <div>Player link</div> */}
                 <div>
                   <a href={`./w/${publishId}`} target="_blank">Player link</a>
                 </div>
@@ -98,7 +103,7 @@ const StudioManage = (props:Props) => {
             className={selectedTab !== 1 ? style.invisibleTabPanel : ''}
             selectedClassName={style.visibleTabPanel}
           >
-            <ChatBox channel={publishId} />
+            <ChatBoxNoSSR channel={publishId} />
           </TabPanel>
           {/* <TabPanel
             className={selectedTab !== 2 ? style.invisibleTabPanel : ''}
