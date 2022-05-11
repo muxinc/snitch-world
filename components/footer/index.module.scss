@@ -1,15 +1,9 @@
 @import './../../style-vars.scss';
 
 .container {
-  padding: 22px 0;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
-  color: $color_gray16;
-
-  @media only screen and (min-width: $breakpoint_sm) {
-    display: flex;
-  }
 
   & > * {
     margin: 0 10px;

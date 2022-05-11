@@ -18,7 +18,9 @@ const LayoutDefault = (props:React.PropsWithChildren<Props>) => {
         <div className={styles.body}>
           {children}
         </div>
-        <Footer />
+        <div className={styles.footer}>
+          <Footer />
+        </div>
       </div>
       <style jsx global>{`
         body {
