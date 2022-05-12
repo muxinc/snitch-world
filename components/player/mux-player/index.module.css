@@ -1,9 +1,0 @@
-.video {
-  width: 100%;
-  position: initial;
-  aspect-ratio: unset;
-}
-
-.mediaControlBar {
-  z-index: 2;
-}

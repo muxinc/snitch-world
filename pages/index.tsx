@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 
 import style from '@/styles/Home.module.css';
 import LayoutDefault from '@/layout/layout-default';

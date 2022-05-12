@@ -10,9 +10,12 @@ import {
   MediaVolumeRange
 } from 'media-chrome/dist/react';
 
-import { ReactionPresenter } from '@/components/reactions';
-import styles from './index.module.css';
-import EmojiMediaChromeControl from './emoji-media-chrome-control';
+import StreamerIsCurrentlyOffline from '@/components/streamer-is-currently-offline';
+import EmojiMediaChromeControl from '@/components/player/mux-player/emoji-media-chrome-control';
+import styles from './index.module.scss';
+import usePubnubManager from '@/hooks/use-pubnub-manager';
+import Pubnub from 'pubnub';
+import { LivestreamStateEnum } from '@/context/types';
 
 interface Props {
   publishId: string;
@@ -21,7 +24,37 @@ interface Props {
 const Player = (props: Props) => {
   const { publishId } = props;
 
-  if(!publishId) return null;
+  const [streamState, setStreamState] = React.useState<boolean|undefined>(undefined);
+
+  const { addSignalListener } = usePubnubManager();
+
+  const handleSignal = (signal:Pubnub.SignalEvent) => {
+    const { state } = signal.message;
+    console.log(signal.message);
+    setStreamState(state !== LivestreamStateEnum.active);
+  };
+
+  const checkStreamState = async () => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_MUX_STREAM_BASE_URL}/${publishId}.m3u8`);
+
+    const isOnline = response.status === 200;
+    
+    setStreamState(isOnline);
+
+    addSignalListener(handleSignal);
+  };
+
+  React.useEffect(() => {
+    if(!publishId) return;
+
+    checkStreamState();
+  }, [publishId]);
+
+  if(!publishId || streamState === undefined) return null;
+
+  if(!streamState) {
+    return (<StreamerIsCurrentlyOffline />);
+  }
 
   return (
     <>

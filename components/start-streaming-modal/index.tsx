@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import Button from '@/components/button';
 import style from './index.module.scss';
@@ -13,12 +14,17 @@ const StartStreamingModal = () => {
     <div className={style.container}>
       <div className={style.body}>
         <div className={style.header}>
-          <div>Snitch</div>
-          <div>Start streaming</div>
+          <div>
+            <Image src='/logo-dark.png' width={149} height={80} />
+          </div>
+          <div className={style.headerText}>
+            <div>Start</div>
+            <div>Streaming</div>
+          </div>
         </div>
         <div className={style.message}>
           <div>Welcome to Snitch.world,</div>
-          <div>where spinning up a video stream is easy as 1 • 2 • 3.</div>
+          <div>where spinning up a video stream is easy as <span className={style.oneTwoThree}>1 • 2 • 3</span>.</div>
         </div>
         <Button
           text="Go to Content Creator"

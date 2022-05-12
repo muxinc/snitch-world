@@ -28,18 +28,6 @@
   }
 }
 
-.logo {
-  font-family: $font_snitch;
-  font-size: 70px;
-  margin-top: -10px;
-  line-height: 100px;
-
-  @media only screen and (min-width: $breakpoint_md) {
-    // This font is goofy.
-    margin-top: -10px;
-  }
-}
-
 .about {
   font-family: $font_secondary;
   font-size: 16px;
@@ -63,6 +51,7 @@
   display: flex;
   height: 26px;
   padding: 0;
+  cursor: pointer;
 }
 
 .mobilePopover {

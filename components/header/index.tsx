@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 import Footer from '@/components/footer';
 import style from './index.module.scss';
@@ -19,11 +20,8 @@ const Header = (props:Props) => {
   return (
     <>
       <header className={style.container}>
-        <div
-          className={style.logo}
-          style={{ visibility: hideLogo ? 'hidden' : 'initial' }}
-        >
-          Snitch
+        <div style={{ visibility: hideLogo ? 'hidden' : 'initial' }}>
+          <Image src='/logo-light.png' width={149} height={80} />
         </div>
         <div className={style.about}>
           <span>ABOUT:</span>
