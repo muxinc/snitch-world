@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 import Button from '@/components/button';
+import CoolBox from '@/components/cool-box';
 import style from './index.module.scss';
 
 const StartStreamingModal = () => {
@@ -11,8 +12,8 @@ const StartStreamingModal = () => {
   const handleOnClick = () => push('./studio');
 
   return (
-    <div className={style.container}>
-      <div className={style.body}>
+    <div className={style.coolBoxContainer}>
+      <CoolBox>
         <div className={style.header}>
           <div>
             <Image src='/logo-dark.png' width={149} height={80} />
@@ -30,7 +31,7 @@ const StartStreamingModal = () => {
           text="Go to Content Creator"
           onClick={handleOnClick}
         />
-      </div>
+      </CoolBox>
     </div>
   );
 };

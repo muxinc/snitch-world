@@ -13,7 +13,7 @@ const StreamerIsCurrentlyOffline = () => {
           <div>|(..)|</div>
           <div>+====+</div>
         </div>
-        <div>
+        <div className={style.message}>
           <div>STREAMER</div>
           <div>IS CURRENTLY</div>
           <div className={style.offline}>OFFLINE</div>

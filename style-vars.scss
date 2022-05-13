@@ -1,12 +1,10 @@
-
 /*
 *   FONTS
 */
 // TODO - We should probably bring these fonts local to the project, used by Studio
 @import url(https://static.mux.com/fonts/fonts.css);
-
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
 
 @font-face {
   font-family: "T1 Korium";
@@ -33,12 +31,16 @@ $color_black: #000;
 $color_gray16: #292929;
 $color_gray22: #383838;
 $color_purple1: #9620D8;
+$color_red: #DF491E;
+$color_orange: #FB501D;
+$color_yellow: #FED32F;
+$color_pink: #FB2491;
 
 
 /*
 *   BREAKPOINTS (MIN)
 */
-$breakpoint_sm: 601px;  // iPads & tablets
-$breakpoint_md: 769px;  // Laptop
-$breakpoint_lg: 993px; // Desktops
-$breakpoint_xl: 1201px; // TVs
+$breakpoint_sm: 601px;
+$breakpoint_md: 769px;
+$breakpoint_lg: 993px;
+$breakpoint_xl: 1201px;

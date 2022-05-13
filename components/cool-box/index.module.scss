@@ -1,0 +1,23 @@
+@import './../../style-vars.scss';
+
+.container {
+  display: flex;
+  background-color: $color_white;
+  border-color: $color_black;
+  border-width: 3px;
+  border-style: solid;
+  color: $color_gray22;
+  flex: 1;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  margin: 3px;
+  padding: 36px 20px;
+  border-color: $color_purple1;
+  border-width: 3px;
+  border-style: solid;
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import Events from 'events';
 import Pubnub from 'pubnub';
 import { PubNubProvider } from 'pubnub-react';
@@ -12,7 +11,7 @@ export type ContextState = {
 }
 
 export type ContextActions = {
-  setUuid: (uuid:string) => void;
+  setUuid: (uuid:string) => Promise<boolean>;
 };
 
 type ContextStateAndActions = ContextState & ContextActions;
@@ -28,24 +27,54 @@ interface ContextProviderProps {
 const ContextProvider = (props:React.PropsWithChildren<ContextProviderProps>) => {
   const {
     publishId,
-    uuid = getCookie('uuid')?.toString() || 'anonymous',
+    uuid,
     children
   } = props;
 
-  if(!uuid) {
+  const [_uuid, _setUuid] = React.useState(uuid || getCookie('uuid')?.toString() || 'anonymous');
+
+  // HACK - Full perms, should be scoped (post-TMI?)
+  const [pubnub, setPubnub] = React.useState<Pubnub>(new Pubnub({
+    publishKey: process.env.NEXT_PUBLIC_PUBNUB_PUBLISH_KEY,
+    subscribeKey: process.env.NEXT_PUBLIC_PUBNUB_SUBSCRIBER_KEY!,
+    uuid: _uuid
+  }));
+
+  if(!_uuid) {
     throw new Error('No uuid provided');
   }
 
-  // HACK - Full perms, should be scoped (post-TMI?)
-  const pubnubRef = React.useRef(new Pubnub({
-    publishKey: process.env.NEXT_PUBLIC_PUBNUB_PUBLISH_KEY,
-    subscribeKey: process.env.NEXT_PUBLIC_PUBNUB_SUBSCRIBER_KEY!,
-    uuid
-  }));
+  const init = async (uuid:string) => {
+    pubnub.unsubscribeAll();
+    pubnub.removeListener({
+      message: handleMessage,
+      signal: handleSignal
+    });
+
+    // HACK - Full perms, should be scoped (post-TMI?)
+    setPubnub(new Pubnub({
+      publishKey: process.env.NEXT_PUBLIC_PUBNUB_PUBLISH_KEY,
+      subscribeKey: process.env.NEXT_PUBLIC_PUBNUB_SUBSCRIBER_KEY!,
+      uuid
+    }));
+
+    pubnub.subscribe({
+      channels: [
+        `${publishId}-reactions`,
+        `${publishId}-cta`,
+        `${publishId}-livestream_state`
+      ]
+    });
+
+    pubnub.addListener({
+      message: handleMessage,
+      signal: handleSignal
+    });
+
+    console.debug('getSubscribedChannels:', pubnub.getSubscribedChannels());
+  };
 
   const eventEmitterRef = React.useRef(new Events.EventEmitter());
-
-  const router = useRouter();
 
   const handleMessage = (message:Pubnub.MessageEvent) => {
     console.debug('pubnub message:', message);
@@ -58,26 +87,11 @@ const ContextProvider = (props:React.PropsWithChildren<ContextProviderProps>) =>
   };
 
   React.useEffect(() => {
-    pubnubRef.current.subscribe({
-      channels: [
-        `${publishId}-reactions`,
-        `${publishId}-cta`,
-        `${publishId}-livestream_state`
-      ]
-    });
-
-    pubnubRef.current.addListener({
-      message: handleMessage,
-      signal: handleSignal
-    });
-
-    console.debug('getSubscribedChannels:', pubnubRef.current.getSubscribedChannels());
+    init(_uuid);
 
     return () => { 
-      if(!pubnubRef.current) return;
-      
-      pubnubRef.current.unsubscribeAll();
-      pubnubRef.current.removeListener({
+      pubnub.unsubscribeAll();
+      pubnub.removeListener({
         message: handleMessage,
         signal: handleSignal
       });
@@ -85,21 +99,30 @@ const ContextProvider = (props:React.PropsWithChildren<ContextProviderProps>) =>
     };
   }, []);
 
-  const setUuid = (uuid: string) => {
+  const setUuid = async (uuid: string) => {
+    const response = await fetch(`/api/check-user-presence?uuid=${uuid}&publishId=${publishId}`);
+    const result = await response.json();
+
+    if(result.isUserPresent) return false;
+
+    init(uuid);
+    pubnub!.setUUID(uuid);
+    _setUuid(uuid);
     setCookies('uuid', uuid);
-    router.reload();
+
+    return true;
   };
 
   const initialState:ContextStateAndActions = {
     publishId,
-    uuid,
+    uuid: _uuid,
     eventEmitter: eventEmitterRef.current,
     setUuid
   };
 
   return (
     <Context.Provider value={initialState}>
-      <PubNubProvider client={pubnubRef.current}>
+      <PubNubProvider client={pubnub}>
         {children}
       </PubNubProvider>
     </Context.Provider>

@@ -30,6 +30,12 @@
   text-shadow: 0 0 10px $color_white;
 }
 
+.message {
+  & > * {
+    white-space: nowrap;
+  }
+}
+
 .offline {
   color: $color_white;
 }

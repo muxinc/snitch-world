@@ -19,6 +19,13 @@
   }
 }
 
+.smol {
+  font-size: 18px;
+  padding: 4px 20px;
+  border-width: 3px;
+  border-radius: 9px;
+}
+
 .button:hover {
   background-color: lighten($color_purple1, 30%);
 }

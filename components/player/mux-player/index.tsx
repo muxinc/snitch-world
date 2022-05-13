@@ -31,7 +31,7 @@ const Player = (props: Props) => {
   const handleSignal = (signal:Pubnub.SignalEvent) => {
     const { state } = signal.message;
     console.log(signal.message);
-    setStreamState(state !== LivestreamStateEnum.active);
+    setStreamState(state === LivestreamStateEnum.active);
   };
 
   const checkStreamState = async () => {

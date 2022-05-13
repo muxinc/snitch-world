@@ -11,6 +11,12 @@ const client = new Pubnub({
   uuid: 'snitch-world-system',
 });
 
+const getChannelOccupants = async (channel:string) => {
+  const members = await client.hereNow({ channels: [channel] });
+
+  return members.channels[channel].occupants;
+}
+
 const signalLivestreamState = async (channel:string, status:string) => {
   const state = LivestreamStateArray.find(stateEnum => stateEnum === status);
 
@@ -61,6 +67,7 @@ const grant = async (uuid:string, publishId:string) => {
 };
 
 export {
+  getChannelOccupants,
   signalLivestreamState,
   grant
 };

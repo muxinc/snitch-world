@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import Pubnub from 'pubnub';
 
 import { Context } from 'context/';
@@ -7,12 +6,7 @@ import { Context } from 'context/';
 function usePubnubManager() {
   const { uuid, eventEmitter, setUuid } = React.useContext(Context);
 
-  const router = useRouter();
-
-  const updateUuid = (uuid:string) => {
-    setUuid(uuid);
-    router.reload();
-  };
+  const updateUuid = async (uuid:string): Promise<boolean> => setUuid(uuid);
 
   const addMessageListener = (handler:(message: Pubnub.MessageEvent) => void) => {
     eventEmitter.addListener('message', handler);

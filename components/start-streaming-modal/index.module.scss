@@ -1,34 +1,18 @@
 @import './../../style-vars.scss';
 
-.container {
-  display: flex;
+.coolBoxContainer {
   max-width: 770px;
-  background-color: $color_white;
   box-shadow: 0px 0px 30px 5px rgba($color_purple1, 0.9);
-  border-color: $color_black;
-  border-width: 3px;
-  border-style: solid;
   margin: 8px;
-  color: $color_gray22;
 
   @media only screen and (min-width: $breakpoint_md) {
     font-size: 30px;
   }
-}
 
-.body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1;
-  margin: 3px;
-  padding: 36px 20px;
-  border-color: $color_purple1;
-  border-width: 3px;
-  border-style: solid;
-
-  @media only screen and (min-width: $breakpoint_md) {
-    padding: 36px 118px;
+  & > DIV > DIV {
+    @media only screen and (min-width: $breakpoint_md) {
+      padding: 36px 118px;
+    }
   }
 }
 

@@ -18,11 +18,19 @@ const ChatBox = (props: Props) => {
 
   const { uuid } = usePubnubManager();
 
-  const pubnubRef = React.useRef(new Pubnub({
+  const [pubnub, setPubnub] = React.useState(new Pubnub({
     publishKey: process.env.NEXT_PUBLIC_PUBNUB_PUBLISH_KEY,
     subscribeKey: process.env.NEXT_PUBLIC_PUBNUB_SUBSCRIBER_KEY!,
     uuid
   }));
+
+  React.useEffect(() => {
+    setPubnub(new Pubnub({
+      publishKey: process.env.NEXT_PUBLIC_PUBNUB_PUBLISH_KEY,
+      subscribeKey: process.env.NEXT_PUBLIC_PUBNUB_SUBSCRIBER_KEY!,
+      uuid
+    }));
+  }, [uuid]);
 
   const messageRenderer = (props: MessageRendererProps) => {
     const { time, message: { publisher, message } } = props;
@@ -47,7 +55,7 @@ const ChatBox = (props: Props) => {
   if(!channel) return null;
 
   return (
-    <PubNubProvider client={pubnubRef.current}>
+    <PubNubProvider client={pubnub}>
       <div className={style.main}>
         <Chat currentChannel={`${channel}-chat`} theme={theme}>
           <MessageList messageRenderer={messageRenderer} />

@@ -35,7 +35,7 @@ const Watch = () => {
           </div>
           <div className={style.chatBoxContainer}>
             <ChatBoxNoSSR channel={publishId} />
-            <JoinTheChat />
+            <JoinTheChat channel={publishId} />
           </div>
         </div>
       </LayoutDefault>
