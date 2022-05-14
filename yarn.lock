@@ -604,10 +604,10 @@
     esdoc-ecmascript-proposal-plugin "^1.0.0"
     jsonwebtoken "^8.5.1"
 
-"@mux/studio-embed@^0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@mux/studio-embed/-/studio-embed-0.2.4.tgz#dd257135ef3e7989e8de6148262d91efdb989b9c"
-  integrity sha512-8YH5fPHhFG/5raxpW2Dp8YbYZAIKd0FKF7nm7aIy6UYgtIdy0o0cRMAqeMr0eQnqcd3WhWtkHK6nfAaI2kjr7Q==
+"@mux/studio-embed@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@mux/studio-embed/-/studio-embed-0.3.1.tgz#2f565e8bd1359a6a5e06908e417d60165d532d3a"
+  integrity sha512-Nc63Kl1gqcWErH1bGMRNbo52H8aFvozELNSiCm1GXFLRx+yhTzvYzRWih0y4LP2p2Awl8OVFs7fvq9Puny17dg==
 
 "@next/env@12.1.5":
   version "12.1.5"

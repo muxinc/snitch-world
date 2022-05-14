@@ -24,16 +24,21 @@
 }
 
 .button {
+  width: auto;
+  min-height: 40px;
   appearance: none;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   display: inline-block;
   font-size: 14px;
   text-align: center;
   background: $color_gray20;
-  border: 1px solid $color_gray22;
   border-radius: 3px;
+  border: none;
   color: $color_white;
   line-height: 1;
-  padding: 10px 15px;
+  padding: 0 15px;
   cursor: pointer;
   font-family: system-ui, -apple-system, Segoe UI,Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
 }

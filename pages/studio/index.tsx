@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import studioEmbed from '@mux/studio-embed';
+import { createStudio } from '@mux/studio-embed';
 
 import StudioManage from '@/components/studio-manage';
 import { StatCounts } from '@/types/mux';
@@ -48,7 +48,7 @@ const Studio = () => {
     if(!studioContext || studio) return;
 
     try {
-      studioEmbed.init(studioContext.token, studioRef.current, { autoSize: false })
+      createStudio(studioContext.token, studioRef.current!, { autoSize: false })
         .then((studio:any) => {
           setStudio(studio);
           timerRef.current = setInterval(handleOnInterval, 10000);
