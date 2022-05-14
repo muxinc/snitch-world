@@ -1,3 +1,5 @@
+@import './../../style-vars.module.scss';
+
 .container {
   flex: 1;
   display: flex;
@@ -5,13 +7,13 @@
 }
 
 .container A {
-  color: #49DFC6;
+  color: $color_green;
   text-decoration: none;
 }
 
 .topBar {
   height: 65px;
-  background-color: #666;
+  background-color: $color_gray40;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -19,6 +21,29 @@
 
 .topBar > DIV {
   padding: 1rem;
+}
+
+.button {
+  appearance: none;
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
+  background: $color_gray20;
+  border: 1px solid $color_gray22;
+  border-radius: 3px;
+  color: $color_white;
+  line-height: 1;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-family: system-ui, -apple-system, Segoe UI,Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+}
+
+.button:hover {
+  background-color: darken($color: $color_gray20, $amount: 5);
+}
+
+.button:active {
+  background-color: darken($color: $color_gray20, $amount: 10);
 }
 
 .tabContainer {
@@ -34,7 +59,7 @@
 }
 
 .tabList {
-  background-color: #444;
+  background-color: $color_gray27;
   padding: 0;
   margin: 0;
   display: flex;
@@ -45,7 +70,7 @@
   list-style-type: none;
   flex: 1;
   text-align: center;
-  color: #fff;
+  color: $color_white;
   padding: 12px 0;
   text-transform: uppercase;
   outline: none;
@@ -53,13 +78,13 @@
 }
 
 .selectedTab {
-  background-color: #323232;
+  background-color: $color_gray20;
 }
 
 .visibleTabPanel {
   flex-grow: 1;
-  background-color: #323232;
-  color: #fff;
+  background-color: $color_gray20;
+  color: $color_white;
   padding: .5rem 1rem;
   position: relative;
 }

@@ -1,4 +1,4 @@
-@import './../../style-vars.scss';
+@import './../../style-vars.module.scss';
 
 .button {
   font-family: $font_secondary;
@@ -17,6 +17,13 @@
     font-size: 30px;
     padding: 8px 30px;
   }
+}
+
+.button:disabled {
+  pointer-events: none;
+  border-color: $color_gray80;
+  color: $color_gray80;
+  text-decoration: line-through;
 }
 
 .smol {

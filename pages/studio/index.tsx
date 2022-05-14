@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import studioEmbed from '@mux/studio-embed';
 
-import StudioManage from '@/containers/studio-manage';
+import StudioManage from '@/components/studio-manage';
 import { StatCounts } from '@/types/mux';
 import ContextProvider from 'context/';
 import style from './index.module.css';

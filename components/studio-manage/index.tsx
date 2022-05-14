@@ -3,13 +3,13 @@ import dynamic from 'next/dynamic';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import Pubnub from 'pubnub';
 
-import ChatBox from '@/components/chat-box';
 import { StatCounts } from '@/types/mux';
 import { LivestreamStateEnum, ReactionArray } from '@/context/types';
 import { ReactionPill } from '@/components/reactions';
-import ButtonDropdown from '@/components/button-dropdown';
 import usePubnubManager from '@/hooks/use-pubnub-manager';
-import style from './index.module.css';
+
+import style from './index.module.scss';
+import Button from './button';
 
 const ChatBoxNoSSR = dynamic(
   () => import('@/components/chat-box'),
@@ -45,7 +45,7 @@ const StudioManage = (props:Props) => {
 
   React.useEffect(() => {
     // TODO - When the state falls into a 'disabled' state, we need to
-    // nav the user to a "Thank you for using Snitch" patge
+    // nav the user to a "Thank you for using Snitch" page
   }, [state]);
 
   const pills = ReactionArray.map(reaction => <ReactionPill key={reaction} emoji={reaction} text={reactions[reaction]} />);
@@ -54,7 +54,7 @@ const StudioManage = (props:Props) => {
     <div className={style.container}>
       <div className={style.topBar}>
         <div>
-          <ButtonDropdown />
+          <Button text="Call to Action" />
         </div>
       </div>
       <div className={style.tabContainer}>

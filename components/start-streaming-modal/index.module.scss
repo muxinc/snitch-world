@@ -1,4 +1,4 @@
-@import './../../style-vars.scss';
+@import './../../style-vars.module.scss';
 
 .coolBoxContainer {
   max-width: 770px;
@@ -54,4 +54,12 @@
 
 .oneTwoThree {
   white-space: nowrap;
+}
+
+.isNotPc {
+  margin: 10px 0;
+  font-family: $font_secondary;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
 }

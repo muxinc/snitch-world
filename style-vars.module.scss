@@ -4,7 +4,7 @@
 // TODO - We should probably bring these fonts local to the project, used by Studio
 @import url(https://static.mux.com/fonts/fonts.css);
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,700&display=swap');
 
 @font-face {
   font-family: "T1 Korium";
@@ -29,8 +29,13 @@ $purple_bubble_image: '/purple.png';
 $color_white: #fff;
 $color_black: #000;
 $color_gray16: #292929;
+$color_gray20: #323232;
 $color_gray22: #383838;
+$color_gray27: #444444;
+$color_gray40: #666666;
+$color_gray80: #CCCCCC;
 $color_purple1: #9620D8;
+$color_green: #1FC3A8;
 $color_red: #DF491E;
 $color_orange: #FB501D;
 $color_yellow: #FED32F;
@@ -44,3 +49,10 @@ $breakpoint_sm: 601px;
 $breakpoint_md: 769px;
 $breakpoint_lg: 993px;
 $breakpoint_xl: 1201px;
+
+:export {
+  breakpoint_sm: $breakpoint_sm;
+  breakpoint_md: $breakpoint_md;
+  breakpoint_lg: $breakpoint_lg;
+  breakpoint_xl: $breakpoint_xl;
+}
