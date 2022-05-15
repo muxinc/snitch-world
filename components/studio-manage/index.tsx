@@ -86,7 +86,7 @@ const StudioManage = (props:Props) => {
             <div className={style.infoTabRow}>
               <div className={style.infoTabCol}>
                 <div>
-                  <a href={`./w/${publishId}`} target="_blank">Player link</a>
+                  <a href={`./w/${publishId}`} rel="noopener noreferrer" target="_blank">Player link</a>
                 </div>
               </div>
             </div>
