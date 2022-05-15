@@ -25,6 +25,7 @@
     "pubnub-react": "^2.1.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-modal": "^3.15.1",
     "react-tabs": "^5.1.0",
     "react-tsparticles": "1.42.4",
     "sass": "^1.51.0"

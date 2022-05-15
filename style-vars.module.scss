@@ -22,10 +22,10 @@ $font_snitch: 'T1 Korium';
 */
 $purple_bubble_image: '/purple.png';
 
-
 /*
 *   COLORS
 */
+// Common
 $color_white: #fff;
 $color_black: #000;
 $color_gray16: #292929;
@@ -34,8 +34,10 @@ $color_gray22: #383838;
 $color_gray27: #444444;
 $color_gray40: #666666;
 $color_gray80: #CCCCCC;
-$color_purple1: #9620D8;
 $color_green: #1FC3A8;
+
+// Snitch
+$color_purple: #9620D8;
 $color_red: #DF491E;
 $color_orange: #FB501D;
 $color_yellow: #FED32F;

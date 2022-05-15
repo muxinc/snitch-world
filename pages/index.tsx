@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import style from '@/styles/Home.module.css';
 import LayoutDefault from '@/layout/layout-default';
-import StartStreamingModal from '@/components/start-streaming-modal';
+import StartStreamingBox from '@/components/start-streaming-box';
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
       </Head>
 
       <main className={style.main}>
-        <StartStreamingModal />
+        <StartStreamingBox />
       </main>
     </LayoutDefault>
   );

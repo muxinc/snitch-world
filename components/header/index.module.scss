@@ -64,7 +64,7 @@
   z-index: 9;
   color: $color_white;
   backdrop-filter: blur(14px);
-  background-color: rgba($color_purple1, 0.7);
+  background-color: rgba($color_purple, 0.7);
 
   @media only screen and (min-width: $breakpoint_md) {
     display: none;

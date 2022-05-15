@@ -7,7 +7,7 @@ import CoolBox from '@/components/cool-box';
 import style from './index.module.scss';
 import styleVars from './../../style-vars.module.scss';
 
-const StartStreamingModal = () => {
+const StartStreamingBox = () => {
   const [isPc, setIsPc] = React.useState<boolean>(false);
   const { push } = useRouter();
 
@@ -50,4 +50,4 @@ const StartStreamingModal = () => {
   );
 };
 
-export default StartStreamingModal;
+export default StartStreamingBox;
