@@ -45,6 +45,7 @@ const ContextProvider = (props:React.PropsWithChildren<ContextProviderProps>) =>
   }
 
   const init = async (uuid:string) => {
+    pubnub.stop();
     pubnub.unsubscribeAll();
     pubnub.removeListener({
       message: handleMessage,
@@ -52,13 +53,13 @@ const ContextProvider = (props:React.PropsWithChildren<ContextProviderProps>) =>
     });
 
     // HACK - Full perms, should be scoped (post-TMI?)
-    setPubnub(new Pubnub({
+    const newPubnub = new Pubnub({
       publishKey: process.env.NEXT_PUBLIC_PUBNUB_PUBLISH_KEY,
       subscribeKey: process.env.NEXT_PUBLIC_PUBNUB_SUBSCRIBER_KEY!,
       uuid
-    }));
+    });
 
-    pubnub.subscribe({
+    newPubnub.subscribe({
       channels: [
         `${publishId}-reactions`,
         `${publishId}-cta`,
@@ -66,12 +67,14 @@ const ContextProvider = (props:React.PropsWithChildren<ContextProviderProps>) =>
       ]
     });
 
-    pubnub.addListener({
+    newPubnub.addListener({
       message: handleMessage,
       signal: handleSignal
     });
 
-    console.debug('getSubscribedChannels:', pubnub.getSubscribedChannels());
+    console.debug('getSubscribedChannels:', newPubnub.getSubscribedChannels());
+
+    setPubnub(newPubnub);
   };
 
   const eventEmitterRef = React.useRef(new Events.EventEmitter());
