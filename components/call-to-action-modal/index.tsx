@@ -136,7 +136,7 @@ const CallToActionModal = (props: Props) => {
             <div className={style.fieldLabel}>Preview</div>
             <CallToActionBanner metadata={ctaMeta} />
           </>:
-          <div>Specify a URL to have it's meta tags extracted for the Call to Action</div>
+          <div>Specify a URL to have it&apos;s meta tags extracted for the Call to Action</div>
         }
       </ModalStudio>
     </form>
