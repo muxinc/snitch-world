@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-import Button from '@/components/button';
+import Button from '@/components/button-snitch';
 import CoolBox from '@/components/cool-box';
 import style from './index.module.scss';
 import styleVars from './../../style-vars.module.scss';
