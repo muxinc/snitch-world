@@ -1,15 +1,16 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import Pubnub from 'pubnub';
+import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 
 import { StatCounts } from '@/types/mux';
-import { LivestreamStateEnum, ReactionArray } from '@/context/types';
-import { ReactionPill } from '@/components/reactions';
 import usePubnubManager from '@/hooks/use-pubnub-manager';
+import { LivestreamStateEnum, ReactionArray } from '@/context/types';
+import Button from '@/components/button-studio';
+import { ReactionPill } from '@/components/reactions';
+import CallToActionModal from '@/components/call-to-action-modal';
 
 import style from './index.module.scss';
-import Button from './button';
 
 const ChatBoxNoSSR = dynamic(
   () => import('@/components/chat-box'),
@@ -26,6 +27,7 @@ const StudioManage = (props:Props) => {
 
   const [selectedTab, setSelectedTab] = React.useState<number>(0);
   const [state, setState] = React.useState<string>(LivestreamStateEnum.idle);
+  const [ctaOpen, setCtaOpen] = React.useState<boolean>(false);
   const [reactions, setReactions] = React.useState<{[key:string]: string }>(
     ReactionArray.reduce((a, v) => ({ ...a, [v]: 0}), {})
   );
@@ -54,7 +56,7 @@ const StudioManage = (props:Props) => {
     <div className={style.container}>
       <div className={style.topBar}>
         <div>
-          <Button text="Call to Action" />
+          <Button text="Call to Action" onClick={() => setCtaOpen(true)} />
         </div>
       </div>
       <div className={style.tabContainer}>
@@ -80,7 +82,7 @@ const StudioManage = (props:Props) => {
               </div>
               <div className={style.infoTabCol}>
                 <div className={style.infoHeader}>Viewer count</div>
-                <div>{statCounts?.viewers}</div>
+                <div>{statCounts?.views}</div>
               </div>
             </div>
             <div className={style.infoTabRow}>
@@ -113,6 +115,11 @@ const StudioManage = (props:Props) => {
           </TabPanel> */}
         </Tabs>
       </div>
+      <CallToActionModal
+        publishId={publishId}
+        open={ctaOpen}
+        onClose={() => setCtaOpen(false)}
+        />
     </div>
   ) 
 };

@@ -3,15 +3,14 @@ import usePubnubManager from '@/hooks/use-pubnub-manager';
 import { Form, Formik, FormikErrors, FormikHelpers, FormikProps, FormikValues } from 'formik';
 
 import CoolBox from '@/components/cool-box';
-import Button from '@/components/button';
+import Button from '@/components/button-snitch';
 import style from './index.module.scss';
-import { usePubNub } from 'pubnub-react';
 
 interface FormInputs {
   username: string;
 }
 
-const initialValues:FormInputs = { username: '' };
+const initialValues: FormInputs = { username: '' };
 
 interface Props {
   channel: string;
@@ -26,7 +25,7 @@ const JoinTheChat = (props:Props) => {
 
   const { uuid, updateUuid } = usePubnubManager();
 
-  React.useEffect(() => { console.log(uuid)
+  React.useEffect(() => {
     setIsSignedIn(uuid !== 'anonymous');
   }, [uuid]);
 

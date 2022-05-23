@@ -941,6 +941,25 @@
   dependencies:
     "@types/node" "*"
 
+"@types/lodash-es@^4.17.6":
+  version "4.17.6"
+  resolved "https://registry.yarnpkg.com/@types/lodash-es/-/lodash-es-4.17.6.tgz#c2ed4c8320ffa6f11b43eb89e9eaeec65966a0a0"
+  integrity sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash.debounce@^4.0.7":
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/@types/lodash.debounce/-/lodash.debounce-4.0.7.tgz#0285879defb7cdb156ae633cecd62d5680eded9f"
+  integrity sha512-X1T4wMZ+gT000M2/91SYj0d/7JfeNZ9PeeOldSNoE/lunLeQXKvkmIumI29IaKMotU/ln/McOIvgzZcQ/3TrSA==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash@*":
+  version "4.14.182"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.182.tgz#05301a4d5e62963227eaafe0ce04dd77c54ea5c2"
+  integrity sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==
+
 "@types/node@*":
   version "17.0.23"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.23.tgz#3b41a6e643589ac6442bdbd7a4a3ded62f33f7da"
@@ -965,6 +984,13 @@
   version "4.29.6"
   resolved "https://registry.yarnpkg.com/@types/pubnub/-/pubnub-4.29.6.tgz#204e8a20d60103fb8581ff73d0b7607684a7de72"
   integrity sha512-XaKbvQZAodrjm8faszvoH2uI3ws3f7eBXWTU8cPWonl1NKJzYkxA/8WtSOk09vtT8KyLqu6mgc4YKBO+Stuubw==
+
+"@types/react-portal@^4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@types/react-portal/-/react-portal-4.0.4.tgz#1c0e5a248f6e18a66f981139c13b6e796f4a92b6"
+  integrity sha512-ecVWngYHeSymq5XdrQOXRpIb9ay5SM4Stm/ur6+wc0Z+r05gafZ5SuMRbXKYsj4exNJa+4CTKK6J7qcTKm9K5g==
+  dependencies:
+    "@types/react" "*"
 
 "@types/react-tabs@^2.3.4":
   version "2.3.4"
@@ -2491,11 +2517,6 @@ execa@^5.0.0:
     onetime "^5.1.2"
     signal-exit "^3.0.3"
     strip-final-newline "^2.0.0"
-
-exenv@^1.2.0:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
-  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
 
 exit@^0.1.2:
   version "0.1.2"
@@ -4064,7 +4085,7 @@ lodash@^4.17.15, lodash@^4.17.21, lodash@^4.7.0, lodash@~4.17.21:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
+loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -4155,6 +4176,34 @@ merge2@^1.3.0, merge2@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
+
+metascraper-description@^5.29.3:
+  version "5.29.3"
+  resolved "https://registry.yarnpkg.com/metascraper-description/-/metascraper-description-5.29.3.tgz#82b43031a334777b64fbe28f70c6f1460a71d5d0"
+  integrity sha512-SiVYiIbmhXThxgt5UEH/NVU9w9x7gSNDOxrmHJ3Ls+jqinQ7bCIZ2QwpEVLBWJdufHJR401spF88bJ8zO2KQ1Q==
+  dependencies:
+    "@metascraper/helpers" "^5.29.3"
+
+metascraper-image@^5.29.3:
+  version "5.29.3"
+  resolved "https://registry.yarnpkg.com/metascraper-image/-/metascraper-image-5.29.3.tgz#0918534000c6cd37d9ac835d0e3676f317c2e2a3"
+  integrity sha512-S4CYJUExKRbZGf7GPfIzjVgjQ0wCn+MNTTCUZqG7cgfyklOyVqX2RMlRfkQP1CYuE8Cg+GkXFtwdBwJffa8IOQ==
+  dependencies:
+    "@metascraper/helpers" "^5.29.3"
+
+metascraper-title@^5.29.3:
+  version "5.29.3"
+  resolved "https://registry.yarnpkg.com/metascraper-title/-/metascraper-title-5.29.3.tgz#7ca273d8f8507fcf5ed656ca39572e4eaf8cd388"
+  integrity sha512-LLuq+JZN+vcEbAF69SBmU9yRvlRRuQvY75HX+1anyoM7YhIGvbcenBRIdQ0rKzHE33kkUcwGGQ+7CQg3tfZ+dA==
+  dependencies:
+    "@metascraper/helpers" "^5.29.3"
+
+metascraper-url@^5.29.3:
+  version "5.29.3"
+  resolved "https://registry.yarnpkg.com/metascraper-url/-/metascraper-url-5.29.3.tgz#6b7c06e92269c8d7c8ebb3a449d031866a38fb51"
+  integrity sha512-/ylqU1sz8TTtnN078BxqM5Ga1M+BaVnG+lcr7vkXm5AB/oDYpyT87TOZxlhWuskpfFJAcN57IhT3l0DzbOfO+A==
+  dependencies:
+    "@metascraper/helpers" "^5.29.3"
 
 metascraper@^5.29.3:
   version "5.29.3"
@@ -4749,7 +4798,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.5.0, prop-types@^15.7.2:
+prop-types@^15.5.0, prop-types@^15.5.8, prop-types@^15.7.2:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -4881,20 +4930,12 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-lifecycles-compat@^3.0.0:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
-  integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
-
-react-modal@^3.15.1:
-  version "3.15.1"
-  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.15.1.tgz#950ce67bfef80971182dd0ed38f2d9b1a681288b"
-  integrity sha512-duB9bxOaYg7Zt6TMFldIFxQRtSP+Dg3F1ZX3FXxSUn+3tZZ/9JCgeAQKDg7rhZSAqopq8TFRw3yIbnx77gyFTw==
+react-portal@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/react-portal/-/react-portal-4.2.2.tgz#bff1e024147d6041ba8c530ffc99d4c8248f49fa"
+  integrity sha512-vS18idTmevQxyQpnde0Td6ZcUlv+pD8GTyR42n3CHUQq9OHi1C4jDE4ZWEbEsrbrLRhSECYiao58cvocwMtP7Q==
   dependencies:
-    exenv "^1.2.0"
-    prop-types "^15.7.2"
-    react-lifecycles-compat "^3.0.0"
-    warning "^4.0.3"
+    prop-types "^15.5.8"
 
 react-tabs@^5.1.0:
   version "5.1.0"
@@ -5704,13 +5745,6 @@ walker@^1.0.7:
   integrity sha512-ts/8E8l5b7kY0vlWLewOkDXMmPdLcVV4GmOQLyxuSswIJsweeFZtAsMF7k1Nszz+TYBQrlYRmzOnr398y1JemQ==
   dependencies:
     makeerror "1.0.12"
-
-warning@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
-  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
-  dependencies:
-    loose-envify "^1.0.0"
 
 webidl-conversions@^5.0.0:
   version "5.0.0"

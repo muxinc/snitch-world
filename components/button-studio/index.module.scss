@@ -1,0 +1,33 @@
+@import './../../style-vars.module.scss';
+
+.button {
+  width: auto;
+  min-height: 40px;
+  appearance: none;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
+  background: $color_gray20;
+  border-radius: 3px;
+  border: none;
+  color: $color_white;
+  line-height: 1;
+  padding: 0 15px;
+  cursor: pointer;
+  font-family: system-ui, -apple-system, Segoe UI,Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+}
+
+.button:hover {
+  background-color: darken($color: $color_gray20, $amount: 5);
+}
+
+.button:active {
+  background-color: darken($color: $color_gray20, $amount: 10);
+}
+
+.button:disabled {
+  background-color: $color_gray40;
+}

@@ -1,0 +1,28 @@
+@import './../../style-vars.module.scss';
+
+.error {
+  color: $color_red;
+}
+
+.fieldContainer {
+  margin-bottom: 20px;
+  width: 60%;
+}
+
+.fieldLabel {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 38px;
+}
+
+.fieldInput {
+  padding: 14px;
+  border: 1px $color_gray16 solid;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.fieldInput:focus {
+  outline: none;
+  border: 1px $color_gray80 solid;
+}

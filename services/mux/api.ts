@@ -10,7 +10,7 @@ const client = got.extend({
 export const createLivestream = async () => {
   const { data } = await client.post('video/v1/live-streams', {
     json: {
-      test: true,
+      max_continuous_duration: 1800,
       latency_mode: "low",
       playback_policy: "public",
       new_asset_settings: {

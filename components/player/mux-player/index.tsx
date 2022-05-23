@@ -1,21 +1,20 @@
 import React from 'react';
+import Pubnub from 'pubnub';
 import MuxVideo from '@mux-elements/mux-video-react';
 import { 
   MediaControlBar,
   MediaController,
-  MediaFullscreenButton,
   MediaMuteButton,
   MediaPlayButton,
-  MediaTimeRange,
   MediaVolumeRange
 } from 'media-chrome/dist/react';
 
+import usePubnubManager from '@/hooks/use-pubnub-manager';
 import StreamerIsCurrentlyOffline from '@/components/streamer-is-currently-offline';
 import EmojiMediaChromeControl from '@/components/player/mux-player/emoji-media-chrome-control';
-import styles from './index.module.scss';
-import usePubnubManager from '@/hooks/use-pubnub-manager';
-import Pubnub from 'pubnub';
 import { LivestreamStateEnum } from '@/context/types';
+import CallToActionBanner from '@/components/call-to-action-banner';
+import styles from './index.module.scss';
 
 interface Props {
   publishId: string;
@@ -25,12 +24,24 @@ const Player = (props: Props) => {
   const { publishId } = props;
 
   const [streamState, setStreamState] = React.useState<boolean|undefined>(undefined);
+  const [ctaMeta, setCtaMeta] = React.useState(undefined);
 
-  const { addSignalListener } = usePubnubManager();
+  const ctaTimeout = React.useRef<NodeJS.Timeout>();
+
+  const { addMessageListener, addSignalListener } = usePubnubManager();
+
+  const handleMessage = (message: Pubnub.MessageEvent) => {
+    if(ctaTimeout.current) {
+      clearTimeout(ctaTimeout.current);
+    }
+
+    setCtaMeta(message.message.cta);
+
+    ctaTimeout.current = setTimeout(() => setCtaMeta(undefined), 15000);
+  };
 
   const handleSignal = (signal:Pubnub.SignalEvent) => {
     const { state } = signal.message;
-    console.log(signal.message);
     setStreamState(state === LivestreamStateEnum.active);
   };
 
@@ -41,6 +52,7 @@ const Player = (props: Props) => {
     
     setStreamState(isOnline);
 
+    addMessageListener(handleMessage);
     addSignalListener(handleSignal);
   };
 
@@ -73,15 +85,16 @@ const Player = (props: Props) => {
           preferMse
           autoPlay
           muted
+          onEnded={() => console.log('ended')}
         />
         <MediaControlBar className={styles.mediaControlBar}>
           <MediaPlayButton />
+          <div className={styles.spacer} />
           <MediaMuteButton />
           <MediaVolumeRange />
-          <MediaTimeRange />
-          <MediaFullscreenButton />
           <EmojiMediaChromeControl channel={publishId} />
         </MediaControlBar>
+        <CallToActionBanner metadata={ctaMeta} />
       </MediaController>
     </>
   );

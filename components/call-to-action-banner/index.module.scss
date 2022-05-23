@@ -1,0 +1,98 @@
+@import './../../style-vars.module.scss';
+
+.container {
+  opacity: 100%;
+  width: 100%;
+  display: none;
+  color: $color_white;
+  box-sizing: border-box;
+  position: relative;
+  bottom: -84px;
+  background-color: $color_black;
+  z-index: 2;
+  position: absolute;
+  text-decoration: none;
+
+  @media only screen and (min-width: $breakpoint_md) {
+    position: relative;
+    bottom: 0;
+    background-color: transparent;
+    padding: 0 26px 18px 26px;
+  }
+}
+
+.container:hover {
+  background-color: $color_black;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 21.35%, #631F96 100%);;
+}
+
+.container.show {
+  display: flex;
+  transform: scaleY(1);
+}
+
+.image {
+  width: 128px;
+  height: 84px;
+  background-color: $color_black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-right: 10px;
+
+  @media only screen and (min-width: $breakpoint_md) {
+    width: 163px;
+    height: 107px;
+    margin-right: 20px;
+  }  
+}
+
+.textContainer {
+  min-width: 0;
+  font-family: $font_primary;
+  flex-grow: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+
+  @media only screen and (min-width: $breakpoint_md) {
+    white-space: nowrap;
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 5px;
+  }
+}
+
+.description {
+  font-size: 14px;
+  line-height: 19px;
+  height: 76px; // line-height * 4
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  display: none;
+
+  @media only screen and (min-width: $breakpoint_md) {
+    display: block;
+  }
+}
+
+.go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
