@@ -16,7 +16,7 @@
   @media only screen and (min-width: $breakpoint_md) {
     position: relative;
     bottom: 0;
-    background-color: transparent;
+    background: linear-gradient(0deg, rgba($color_black, 1) 35%, rgba($color_black, 0.38001137955182074) 84%, rgba($color_black, 0) 100%);;
     padding: 0 26px 18px 26px;
   }
 }

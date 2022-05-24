@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className={style.container}>
       <span>&copy;{new Date().getFullYear()} Mux Inc</span>
-      <Link href="/tos">Terms of Service</Link>
+      {/* <Link href="/tos">Terms of Service</Link> */}
     </footer>
   );
 };

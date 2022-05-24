@@ -22,6 +22,7 @@ interface Props {
 const CallToActionModal = (props: Props) => {
   const { publishId, open, onClose } = props;
   
+  const [url, setUrl] = React.useState<string>();
   const [error, setError] = React.useState<string>();
   const [ctaMeta, setCtaMeta] = React.useState<any>();
 
@@ -36,6 +37,8 @@ const CallToActionModal = (props: Props) => {
   const pubnub = usePubNub();
 
   const resolveCtaMetaDebounced = debounce(async (values: FormikValues) => {
+    setUrl(values.url);
+
     try {
       const response = await fetch(`/api/get-url-meta`, { method: 'post', body: values.url });
       const result = await response.json();
@@ -43,21 +46,25 @@ const CallToActionModal = (props: Props) => {
       setCtaMeta(result.metadata);
     } catch(err) {
       formik.setFieldError('url', 'Needs to be a valid URL');
-      setCtaMeta(null);
+      setCtaMeta(undefined);
     }    
   }, 300);
 
-  const handleValidate = (values: FormikValues) => {
-    formik.setSubmitting(true);
+  const handleValidate = async (values: FormikValues) => {
     formik.setFieldError('url', undefined);
 
     const errors: FormikErrors<FormInputs> = {};
 
+    if(url === values.url) return errors;
+
     if (!values.url) {
+      setCtaMeta(undefined);
       errors.url = 'Required';
 
       return errors;
     }
+
+    formik.setSubmitting(true);
 
     try {
       const url = new URL(values.url);
@@ -66,7 +73,7 @@ const CallToActionModal = (props: Props) => {
         errors.url = 'Needs to be either an http or https url';
       }
 
-      resolveCtaMetaRef.current && resolveCtaMetaRef.current(values);
+      resolveCtaMetaRef.current && await resolveCtaMetaRef.current(values);
     } catch(err) {
       errors.url = 'Needs to be a valid URL';
     }
@@ -86,6 +93,7 @@ const CallToActionModal = (props: Props) => {
       });
 
       setError(undefined);
+      setUrl(undefined);
       setCtaMeta(undefined);
       formik.resetForm();
     }
@@ -98,6 +106,7 @@ const CallToActionModal = (props: Props) => {
   };
 
   const handleReset = async () => {
+    setUrl(undefined);
     setCtaMeta(undefined);
     onClose();
   }
