@@ -85,7 +85,8 @@ const Player = (props: Props) => {
           preferMse
           autoPlay
           muted
-          onEnded={() => console.log('ended')}
+          playsInline
+          onEnded={() => setStreamState(false)}
         />
         <MediaControlBar className={styles.mediaControlBar}>
           <MediaPlayButton />
