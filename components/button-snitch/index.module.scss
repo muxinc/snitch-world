@@ -1,0 +1,44 @@
+@import './../../style-vars.module.scss';
+
+.button {
+  font-family: $font_secondary;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+  color: $color_purple;
+  background-color: $color_white;
+  border-color: $color_purple;
+  border-width: 4px;
+  border-style: solid;
+  border-radius: 14px;
+  padding: 8px 20px;
+
+  @media only screen and (min-width: $breakpoint_md) {
+    font-size: 30px;
+    padding: 8px 30px;
+  }
+}
+
+.button:disabled {
+  pointer-events: none;
+  border-color: $color_gray80;
+  color: $color_gray80;
+  text-decoration: line-through;
+}
+
+.smol {
+  font-size: 18px;
+  padding: 4px 20px;
+  border-width: 3px;
+  border-radius: 9px;
+}
+
+.button:hover {
+  background-color: lighten($color_purple, 30%);
+}
+
+.button:active {
+  background-color: $color_purple;
+  color: $color_white;
+  border-color: $color_white;
+}

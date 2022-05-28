@@ -2,7 +2,7 @@
   display: flex;
   padding: 10px;
   border: none;
-  background: rgba(20, 20, 30, 0.7);
+  background: transparent;
   transition: background 0.15s linear;
   cursor: pointer;
 }
@@ -25,13 +25,14 @@
 .reactionList {
   display: flex;
   margin: 0;
+  padding: 0;
 }
 
 .reactionList > LI {
   list-style-type: none;
   font-size: 30px;
   line-height: 30px;
-  margin: 10px 6px;
+  margin: 10px 15px;
   cursor: pointer;
 }
 
@@ -41,6 +42,7 @@
   background-color: unset;
   border: none;
   transition: transform 0.15s linear;
+  padding: 0;
 }
 
 .reactionList > LI > BUTTON:hover {

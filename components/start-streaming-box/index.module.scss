@@ -1,0 +1,65 @@
+@import './../../style-vars.module.scss';
+
+.coolBoxContainer {
+  max-width: 770px;
+  box-shadow: 0px 0px 30px 5px rgba($color_purple, 0.9);
+  margin: 8px;
+
+  @media only screen and (min-width: $breakpoint_md) {
+    font-size: 30px;
+  }
+
+  & > DIV > DIV {
+    @media only screen and (min-width: $breakpoint_md) {
+      padding: 36px 118px;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  align-self: center;
+  justify-content: space-around;
+
+  & > * {
+    margin: 0 10px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.headerText {
+  display: none;
+
+  @media only screen and (min-width: $breakpoint_md) {
+    display: flex;
+  }
+}
+
+.message {
+  font-family: $font_secondary;
+  font-size: 20px;
+  line-height: 28px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 45px 0 40px 0;
+
+  @media only screen and (min-width: $breakpoint_md) {
+    font-size: 26px;
+    line-height: 32px;
+  }
+}
+
+.oneTwoThree {
+  white-space: nowrap;
+}
+
+.isNotPc {
+  margin: 10px 0;
+  font-family: $font_secondary;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+}

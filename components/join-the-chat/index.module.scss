@@ -1,0 +1,46 @@
+@import './../../style-vars.module.scss';
+
+.container {
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: min-content;
+  min-height: 100%;
+}
+
+.heading {
+  font-size: 52px;
+  font-weight: normal;
+  line-height: 53px;
+  margin: 0 0 20px 0;
+}
+
+.error {
+  color: $color_red;
+}
+
+.fieldContainer {
+  margin-bottom: 20px;
+}
+
+.fieldLabel {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 38px;
+}
+
+.fieldInput {
+  font-family: $font_secondary;
+  padding: 14px;
+  border: 2px $color_gray16 solid;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.fieldInput:focus {
+  outline: none;
+  border: 2px $color_purple solid;
+}

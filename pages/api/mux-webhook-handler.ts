@@ -1,26 +1,24 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getBase } from '@/data/base';
-import { LivestreamStateArray, StudioInstance } from '@/data/types';
+import { signalLivestreamState } from '@/services/pubnub';
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
-  console.log('webhook_payload', req.body);
+  const payload = req.body;
 
-  const { id, status } = req.body.data;
+  const { type, data } = payload;
+  const { status, playback_ids } = data;
 
-  const state = LivestreamStateArray.find(stateEnum => stateEnum === status);
-
-  // If the state is recognized, we update the entry
-  if(state) {
-    const studioInstance:StudioInstance = {
-      livestreamId: id,
-      state
-    };
-
-    getBase().update(studioInstance);
+  if(type === 'video.live_stream.idle' || type === 'video.live_stream.disabled') {
+    // TODO - Implement a webhook handler for disabled to trigger deletion of livestream/studio
   }
 
-  // TODO - Implement a webhook handler for disabled to trigger deletion of livestream/studio
+  if(playback_ids && playback_ids.length > 0) {
+    const channel = playback_ids[0].id;
+    const pubnubResponse = await signalLivestreamState(channel, status);
 
-  res.status(200).json({ accepted: true });
+    res.status(202).json({ pubnubResponse });
+  }
+  else {
+    res.status(200);
+  }
 }

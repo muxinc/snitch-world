@@ -1,38 +1,60 @@
 import React from 'react';
-import Pubnub from 'pubnub';
-import { PubNubProvider } from 'pubnub-react';
-import studioEmbed from '@mux/studio-embed';
+import Head from 'next/head';
+import { createStudio } from '@mux/studio-embed';
 
-import StudioManage from '@/containers/studio-manage';
+import StudioManage from '@/components/studio-manage';
+import { StatCounts } from '@/types/mux';
+import ContextProvider from 'context/';
 import style from './index.module.css';
 
 const Studio = () => {
   const studioRef = React.useRef<HTMLIFrameElement>(null);
-  const [studioToken, setStudioToken] = React.useState();
-  const [studio, setStudio] = React.useState<any>(null);
+  const timerRef = React.useRef<NodeJS.Timer>();
 
-  const client = new Pubnub({
-    publishKey: process.env.NEXT_PUBLIC_PUBNUB_PUBLISH_KEY,
-    subscribeKey: process.env.NEXT_PUBLIC_PUBNUB_SUBSCRIBER_KEY!,
-    uuid: 'userId',
-  });
+  const [studioContext, setStudioContext] = React.useState<any>();
+  const [studio, setStudio] = React.useState<any>(undefined);
+  const [statCounts, setStatCounts] = React.useState<StatCounts>();
+
+  const handleOnInterval = async () => {
+    const { playbackId } = studioContext;
+    const response = await fetch(`./api/get-stat-counts?playbackId=${playbackId}`);
+    const json = await response.json();
+
+    setStatCounts(json.statCounts[0]);
+  };
+
+  const getStudioContext = async () => {
+    const response = await fetch('./api/get-studio-token');
+    return await response.json();
+  }
+
+  const init = async () => {
+    const studioContext = await getStudioContext();
+
+    setStudioContext(studioContext);
+  }
 
   React.useEffect(() => {
-    fetch('./api/get-studio-token')
-      .then((result) => result.json())
-      .then(({ token }) => setStudioToken(token));
+    init();
+
+    return () => {
+      // HACK - This is dumb.
+      clearInterval(timerRef.current as NodeJS.Timeout);
+    };
   }, []);
 
   React.useEffect(() => {
-    if(!studioToken) return;
+    // If no token is available or if studio is already set
+    if(!studioContext || studio) return;
 
     try {
-      studioEmbed.init(studioToken, studioRef.current!)
-        .then((studio) => {
+      createStudio(studioContext.token, studioRef.current!, { autoSize: false })
+        .then((studio:any) => {
           setStudio(studio);
+          timerRef.current = setInterval(handleOnInterval, 10000);
         });
-    } catch(err) { console.log(err); }
-  }, [studioToken]);
+    } catch(err) { console.error(err); }
+  }, [studioContext]);
 
   // TODO - Need to implement user activated livstream/studio delete
   const handleOnLiveStreamEnded = (t: any, t2:any, t3: any) => {
@@ -47,17 +69,26 @@ const Studio = () => {
     return () => studio.off('LIVESTREAM_ENDED', handleOnLiveStreamEnded);
   }, [studio]);
 
+  if(!studioContext) return null;
+
   return (
-    <PubNubProvider client={client}>
+    <>
+      <Head>
+        <title>Snitch - Studio</title>
+      </Head>
       <div className={style.container}>
         <div className={style.studioContainer}>
           <div ref={studioRef} className={style.studio} />
         </div>
-        <div className={style.studioManageContainer}>
-          <StudioManage publishId='1234' />
-        </div>
+        <ContextProvider publishId={studioContext.playbackId} uuid="Content creator">
+          <div className={style.studioManageContainer}>
+            { studioContext &&
+              <StudioManage publishId={studioContext.playbackId} statCounts={statCounts} />
+            }
+          </div>
+        </ContextProvider>
       </div>
-    </PubNubProvider>
+    </>
   );
 };
 

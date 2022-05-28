@@ -1,0 +1,89 @@
+@import './../../style-vars.module.scss';
+
+.container {
+  padding: 0 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $color_white;
+  height: 90px;
+
+  @media only screen and (min-width: $breakpoint_md) {
+    padding: 18px 50px 0 50px;
+  }
+
+  & > .about {
+    text-align: right;
+    display: none;
+
+    @media only screen and (min-width: $breakpoint_md) {
+      display: initial;
+    }
+  }
+
+  & > .mobilePopoverControl {
+    @media only screen and (min-width: $breakpoint_md) {
+      display: none;
+    }
+  }
+}
+
+.about {
+  font-family: $font_secondary;
+  font-size: 16px;
+
+  & > * {
+    display: block;
+  }
+}
+
+.about > SPAN {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.mobilePopoverControl > BUTTON {
+  background: none;
+  border: none;
+  width: 36px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 26px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.mobilePopover {
+  display: flex;
+  position: absolute;
+  top: 90px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  color: $color_white;
+  backdrop-filter: blur(14px);
+  background-color: rgba($color_purple, 0.7);
+
+  @media only screen and (min-width: $breakpoint_md) {
+    display: none;
+  }
+}
+
+.mobilePopoverBody {
+  margin: 40px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  & > .about > A {
+    font-size: 34px;
+    margin-top: .5rem;
+  }
+}
+
+.mobilePopoverFooter {
+  font-family: $font_secondary;
+  font-size: 14px;
+}

@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-
-import styles from './emoji-media-chrome-control.module.css';
-import { Reaction } from './types';
 import { usePubNub } from 'pubnub-react';
+
+import { ReactionArray } from '@/context/types';
+import styles from './emoji-media-chrome-control.module.css';
 
 interface Props {
   channel: string;
@@ -28,7 +28,7 @@ const EmojiMediaChromeControl = (props: Props) => {
     }
   };
 
-  const reactions = Object.values(Reaction).map(reaction => (
+  const reactions = ReactionArray.map(reaction => (
     <li key={reaction}><button onClick={reactionThunk(reaction)}>{reaction}</button></li>
   ));
 

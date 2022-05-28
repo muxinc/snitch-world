@@ -1,0 +1,18 @@
+@import './../style-vars.module.scss';
+
+/*
+*   General overrides
+*/
+html, body, body > #__next {
+  height: 100%;
+}
+
+a { color: inherit; } 
+
+/*
+*   PubNub overrides
+*/
+:root {
+  --chat--dark__background--1: #383838 !important;
+  --chat--dark__hover--1: #49DFC6 !important;
+}

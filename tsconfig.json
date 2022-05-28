@@ -22,13 +22,14 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
-      "@/containers/*": ["containers/*"],
-      "@/data/*": ["data/*"],
+      "@/context/*": ["context/*"],
       "@/hooks/*": ["hooks/*"],
       "@/layout/*": ["layout/*"],
       "@/pages/*": ["pages/*"],
       "@/services/*": ["services/*"],
-      "@/styles/*": ["styles/*"]
+      "@/styles/*": ["styles/*"],
+      "@/types/*": ["types/*"],
+      "@/utils/*": ["utils/*"]
     }
   },
   "include": [

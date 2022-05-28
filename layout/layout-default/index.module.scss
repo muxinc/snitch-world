@@ -1,0 +1,24 @@
+@import './../../style-vars.module.scss';
+
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: $font_primary;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.footer {
+  padding: 22px 0;
+  display: none;
+  color: $color_gray16;
+
+  @media only screen and (min-width: $breakpoint_md) {
+    display: initial;
+  }
+}
