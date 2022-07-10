@@ -579,18 +579,18 @@
     url-regex-safe "~3.0.0"
     video-extensions "~1.2.0"
 
-"@mux-elements/mux-video-react@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@mux-elements/mux-video-react/-/mux-video-react-0.4.2.tgz#ee12642089dda1944bb36bbb3b592305d729fc53"
-  integrity sha512-nIQGLErDAw2TQHgicX7MlQy+MyILcu9spdVaDEqEvDXVVaRq+LQJqVghdmZUjEhZJzgDMX8R915wp5bj8F+71w==
+"@mux-elements/mux-video-react@^0.4.12":
+  version "0.4.12"
+  resolved "https://registry.yarnpkg.com/@mux-elements/mux-video-react/-/mux-video-react-0.4.12.tgz#136e74c8f677c9e964f63dd413ca816d78007395"
+  integrity sha512-riac0+fn5t4sTXANlyKo/DGlt4eSePhlrVaG4i2DcrSGuzXwQUIMVHrC74RCR/MHk/5SXWjgA515VL8iWF8CXQ==
   dependencies:
-    "@mux-elements/playback-core" "0.3.0"
+    "@mux-elements/playback-core" "0.7.0"
     prop-types "^15.7.2"
 
-"@mux-elements/playback-core@0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@mux-elements/playback-core/-/playback-core-0.3.0.tgz#4bba1816b348dfa684bf11c7b9c91df2e0585575"
-  integrity sha512-+gB1S11VVfGGK1wT2tt5KpizvlWZsOPjiZDH/0QY7S2DXlTNCRz8ZuJ38jowIQ75pGIiHjyyswUKWJtV5zLlJQ==
+"@mux-elements/playback-core@0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@mux-elements/playback-core/-/playback-core-0.7.0.tgz#c617452ca22c2ed673d7d82f513ce440147cb6dc"
+  integrity sha512-ikjoDxnrMoxRS7xu7ispAtWkHfrh9FbtvZm+kB8pPpVmwzqM59r/asZxsOnar6EPEzl/sUfxme/5b1plggnvuA==
   dependencies:
     hls.js "1.1.5"
     mux-embed "^4.7.0"
@@ -604,10 +604,10 @@
     esdoc-ecmascript-proposal-plugin "^1.0.0"
     jsonwebtoken "^8.5.1"
 
-"@mux/studio-embed@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@mux/studio-embed/-/studio-embed-0.3.1.tgz#2f565e8bd1359a6a5e06908e417d60165d532d3a"
-  integrity sha512-Nc63Kl1gqcWErH1bGMRNbo52H8aFvozELNSiCm1GXFLRx+yhTzvYzRWih0y4LP2p2Awl8OVFs7fvq9Puny17dg==
+"@mux/studio-embed@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@mux/studio-embed/-/studio-embed-1.1.1.tgz#6273eaaf298ed2ecb3a447e135892d4f18e60624"
+  integrity sha512-A9LSzcyCZyziVNYQcOUhLZKz4J9umWJj4JGqL8KdEQqsLqBxsZl3g8Etn+bZT74Bx+6Q7Dcd+6lfNdzBXJ5I9Q==
 
 "@next/env@12.1.5":
   version "12.1.5"

@@ -49,7 +49,7 @@ const Studio = () => {
 
     try {
       createStudio(studioContext.token, studioRef.current!, { autoSize: false })
-        .then((studio:any) => {
+        .then((studio: any) => {
           setStudio(studio);
           timerRef.current = setInterval(handleOnInterval, 10000);
         });
@@ -64,9 +64,9 @@ const Studio = () => {
   React.useEffect(() => {
     if(!studio) return;
 
-    studio.on('LIVESTREAM_ENDED', handleOnLiveStreamEnded);
+    studio.on('BROADCAST_ENDED', handleOnLiveStreamEnded);
 
-    return () => studio.off('LIVESTREAM_ENDED', handleOnLiveStreamEnded);
+    return () => studio.off('BROADCAST_ENDED', handleOnLiveStreamEnded);
   }, [studio]);
 
   if(!studioContext) return null;

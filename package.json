@@ -8,9 +8,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@mux-elements/mux-video-react": "^0.4.2",
+    "@mux-elements/mux-video-react": "^0.4.12",
     "@mux/mux-node": "^5.0.0-rc.5",
-    "@mux/studio-embed": "^0.3.1",
+    "@mux/studio-embed": "^1.1.1",
     "@pubnub/react-chat-components": "^0.8.0",
     "@types/jsonwebtoken": "^8.5.8",
     "cookies-next": "^2.0.4",
