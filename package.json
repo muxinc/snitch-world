@@ -25,6 +25,7 @@
     "metascraper-title": "^5.29.3",
     "metascraper-url": "^5.29.3",
     "next": "^12.1.5",
+    "next-auth": "^4.10.2",
     "normalize.css": "^8.0.1",
     "pubnub": "^5.0.1",
     "pubnub-react": "^2.1.1",

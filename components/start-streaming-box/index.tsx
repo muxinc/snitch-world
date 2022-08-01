@@ -38,13 +38,15 @@ const StartStreamingBox = () => {
         <div className={style.message}>
           <div>Welcome to Snitch.world,</div>
           <div>where spinning up a video stream is easy as <span className={style.oneTwoThree}>1 • 2 • 3</span>.</div>
+          <br />
+          <div className={style.emphasis}>Currently streaming is only available for Mux employees.</div>
         </div>
         <Button
           text="Go to Content Creator"
           onClick={handleOnClick}
           disabled={!isPc}
         />
-        { !isPc && (<div className={style.isNotPc}>Please use a desktop/laptop to start a stream.</div>) }
+        { !isPc && (<div className={style.emphasis}>Please use a desktop/laptop to start a stream.</div>) }
       </CoolBox>
     </div>
   );
