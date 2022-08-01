@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSession, signIn } from 'next-auth/react';
 import Head from 'next/head';
 import { createStudio } from '@mux/studio-embed';
 
@@ -14,6 +15,8 @@ const Studio = () => {
   const [studioContext, setStudioContext] = React.useState<any>();
   const [studio, setStudio] = React.useState<any>(undefined);
   const [statCounts, setStatCounts] = React.useState<StatCounts>();
+
+  const { status } = useSession();
 
   const handleOnInterval = async () => {
     const { playbackId } = studioContext;
@@ -68,6 +71,13 @@ const Studio = () => {
 
     return () => studio.off('BROADCAST_ENDED', handleOnLiveStreamEnded);
   }, [studio]);
+
+  if (status === 'loading') {
+    return (<span>Loading</span>);
+  }
+  else if (status === 'unauthenticated') {
+    signIn();
+  }
 
   if(!studioContext) return null;
 
