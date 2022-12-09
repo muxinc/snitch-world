@@ -11,6 +11,7 @@ const options: NextAuthOptions = {
       issuer: process.env.OKTA_ISSUER
     })
   ],
+  // https://next-auth.js.org/configuration/options#secret
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token }) {
