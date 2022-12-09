@@ -1,10 +1,9 @@
 import got from 'got';
-import { decryptServiceSecret } from '@/utils/secrets';
 
 const client = got.extend({
   prefixUrl: process.env.MUX_API_BASE_URL,
   username: process.env.MUX_ACCESS_TOKEN_ID,
-  password: decryptServiceSecret(process.env.MUX_SECRET_KEY_ENCRYPTED!)
+  password: process.env.MUX_SECRET_KEY
 });
 
 export const createLivestream = async () => {

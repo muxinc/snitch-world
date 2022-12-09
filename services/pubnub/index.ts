@@ -1,13 +1,11 @@
 import Pubnub from 'pubnub';
 
-import { decryptServiceSecret } from '@/utils/secrets';
-
 import { LivestreamStateArray } from '@/context/types';
 
 const client = new Pubnub({
   publishKey: process.env.NEXT_PUBLIC_PUBNUB_PUBLISH_KEY,
   subscribeKey: process.env.NEXT_PUBLIC_PUBNUB_SUBSCRIBER_KEY!,
-  secretKey: decryptServiceSecret(process.env.PUBNUB_SECRET_KEY_ENCRYPTED!),
+  secretKey: process.env.PUBNUB_SECRET_KEY,
   uuid: 'snitch-world-system',
 });
 

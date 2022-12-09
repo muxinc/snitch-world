@@ -1,18 +1,4 @@
 import jwt from 'jsonwebtoken';
-import crypto from 'crypto';
-
-const decryptServiceSecret = (message:string) => {
-  const decipher = crypto.createDecipheriv(
-    'aes-128-cbc',
-    process.env.SERVICE_ENCRYPTION_KEY!,
-    process.env.SERVICE_ENCRYPTION_IV!
-  );
-
-  let decrypted = decipher.update(message, 'base64', 'utf8');
-  decrypted += decipher.final('utf8');
-
-  return decrypted;
-};
 
 const signToken = (payload:object, privateKey:string) => {
   console.log('jwt-payload', payload);
@@ -23,7 +9,7 @@ const signToken = (payload:object, privateKey:string) => {
 }
 
 const getStudioJwt = (studioId:string, uuid: string, role: 'host' | 'guest') => {
-  if(!process.env.MUX_VIDEO_SIGNING_PRIVATE_KEY_ENCRYPTED) {
+  if(!process.env.MUX_VIDEO_SIGNING_PRIVATE_KEY) {
     throw new Error('No JWT private key set');
   }
 
@@ -36,14 +22,11 @@ const getStudioJwt = (studioId:string, uuid: string, role: 'host' | 'guest') => 
     pid: uuid
   };
   
-  return signToken(
-    payload,
-    decryptServiceSecret(process.env.MUX_VIDEO_SIGNING_PRIVATE_KEY_ENCRYPTED)
-  );
+  return signToken(payload, process.env.MUX_VIDEO_SIGNING_PRIVATE_KEY);
 };
 
 const getDataJwt = (playbackId:string) => {
-  if(!process.env.MUX_DATA_SIGNING_PRIVATE_KEY_ENCRYPTED) {
+  if(!process.env.MUX_DATA_SIGNING_PRIVATE_KEY) {
     throw new Error('No JWT private key set');
   }
 
@@ -54,14 +37,10 @@ const getDataJwt = (playbackId:string) => {
     exp: Date.now() + (1000 * 60)
   };
 
-  return signToken(
-    payload,
-    decryptServiceSecret(process.env.MUX_DATA_SIGNING_PRIVATE_KEY_ENCRYPTED)
-  );
+  return signToken(payload, process.env.MUX_DATA_SIGNING_PRIVATE_KEY);
 };
 
 export {
-  decryptServiceSecret,
   getStudioJwt,
   getDataJwt
 };
