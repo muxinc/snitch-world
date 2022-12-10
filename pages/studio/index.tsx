@@ -72,11 +72,13 @@ const Studio = () => {
     return () => studio.off('BROADCAST_ENDED', handleOnLiveStreamEnded);
   }, [studio]);
 
-  if (status === 'loading') {
-    return (<span>Loading</span>);
-  }
-  else if (status === 'unauthenticated') {
-    signIn();
+  if(process.env.OTKA_ENABLE && process.env.OTKA_ENABLE.toLowerCase() === 'true') {
+    if (status === 'loading') {
+      return (<span>Loading</span>);
+    }
+    else if (status === 'unauthenticated') {
+      signIn();
+    }
   }
 
   if(!studioContext) return null;
