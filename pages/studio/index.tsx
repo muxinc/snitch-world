@@ -72,7 +72,7 @@ const Studio = () => {
     return () => studio.off('BROADCAST_ENDED', handleOnLiveStreamEnded);
   }, [studio]);
 
-  if(!process.env.OTKA_ENABLE || process.env.OTKA_ENABLE.toLowerCase() === 'true') {
+  if(!process.env.OKTA_ENABLE || process.env.OKTA_ENABLE.toLowerCase() === 'true') {
     if (status === 'loading') {
       return (<span>Loading</span>);
     }
