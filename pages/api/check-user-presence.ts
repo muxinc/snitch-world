@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getChannelOccupants, grant } from '@/services/pubnub';
+import { getChannelOccupants } from '@/services/pubnub';
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
   const uuid = req.query.uuid as string;
