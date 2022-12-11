@@ -9,8 +9,6 @@ Snitch has 2 _main_ pages:
 
 The **legacy** Snitch World is still accessible at [https://snitch.world/](https://snitch.world/).  If you want to use it, you’ll need to start a livestream using a broadcasting app (like OBS).
 
-This project is intended to be deployed on Vercel and as such has a couple of considerations that need to be noted.  Primarily around environment keys and how they are managed.
-
 ## ✨Features
 
 - Mux Studio Embed: Used on the Studio page and that allows the **Content Creator** to go live from the browser.
@@ -23,36 +21,102 @@ This project is intended to be deployed on Vercel and as such has a couple of co
 
 ## 🎁 Installation
 
-Installing this project involves setting up a `.env` file that is **committed w
+This project is intended to be deployed on Vercel and used with Okta for authenticating Content Creators to ensure that they are authorized to use Snitch for demo purposes.
 
-Obtain Mux details
+## 🎛️ Environment variables
 
-- `MUX_ACCESS_TOKEN_ID`
-- `MUX_SECRET_KEY_ENCRYPTED`, which is encrypted using the steps defined in the **Secrets** section of this README
-- `MUX_WEBHOOK_SIGNING_SECRET_ENCRYPTED`, which is encrypted using the steps defined in the **Secrets** section of this README
-- `NEXT_PUBLIC_MUX_ENV_KEY`
-- `MUX_VIDEO_SIGNING_KEY`
-- `MUX_VIDEO_SIGNING_PRIVATE_KEY_ENCRYPTED`, which is encrypted using the steps defined in the **Secrets** section of this README
-- `MUX_DATA_SIGNING_KEY`
-- `MUX_DATA_SIGNING_PRIVATE_KEY_ENCRYPTED`, which is encrypted using the steps defined in the **Secrets** section of this README
+Environment variables should be created within Vercel underneath the "Settings" > "Environment Variables" section for the project.  These values will need to be configured in order to use Snitch.
 
-Obtain PubNub details
+### `NEXT_PUBLIC_MUX_STREAM_BASE_URL`
 
-- `NEXT_PUBLIC_PUBNUB_PUBLISH_KEY` and `NEXT_PUBLIC_PUBNUB_SUBSCRIBER_KEY`
-- `PUBNUB_SECRET_KEY_ENCRYPTED`, which is encrypted using the steps defined in the **Secrets** section of this README
+**Recommended value**: `https://stream.mux.com`
 
-Obtain Okta details
+The `NEXT_PUBLIC_MUX_STREAM_BASE_URL` environment variable is the base url that is used to [delivering the Mux live stream](https://docs.mux.com/guides/video/play-your-videos#2-create-an-hls-url).  Default base url value for Mux customers would be to use `https://stream.mux.com`.
 
-- `OKTA_CLIENT_ID`, `OKTA_ISSUER` which are acquired from within Okta when setting up a new App
-- Also acquired when creating an app is the `OKTA_CLIENT_SECRET_ENCRYPTED`, which is encrypted using the steps defined in the **Secrets** section of this README
-- `NEXTAUTH_SECRET` is acquired by generating a random string which is used to hash tokens.  Follow the instructions defined on [NextAuth.js's documentation](https://next-auth.js.org/configuration/options#secret) for generating a value.
+In cases where the Mux's custom domains feature is being used, this would be set to an applicable value.
 
-# 🔑 Secrets
+### `NEXT_PUBLIC_MUX_LITIX_DOMAIN`
 
-Environment variables that are suffixed with `_ENCRYPTED` are encrypted using a common Key and IV.  You can use an online tool to encrypt the values for these environment variables (in the `.env.production` file) using these common keys.
+**Recommended value**: `img.litix.io`
 
-To encrypt values use any utility that is capable of AES encryption and that allows you to set details defined on [Vercel](https://vercel.com/support/articles/how-do-i-workaround-vercel-s-4-kb-environment-variables-limit#step-2:-create-the-encrypted-content).
+The `NEXT_PUBLIC_MUX_LITIX_DOMAIN` is the domain for which [Mux Data](https://docs.mux.com/guides/data) beacons will be sent to.  Used only for capturing anonymized QoE (Quality of Experience) telemetry.
 
-# Setting up Vercel
+### `NEXT_PUBLIC_MUX_ENV_KEY`
 
-You will need to set the common Key and IV from the "Secrets" section as individual Environment Variables: `SERVICE_ENCRYPTION_KEY` and `SERVICE_ENCRYPTION_IV`, respectfully.
+The `NEXT_PUBLIC_MUX_ENV_KEY` is used with the Mux Data SDK to correlate the data beacons to a specific Mux Account.
+
+To obtain this value, log into the [Mux Dashboard](https://dashboard.mux.com/environments) and grab the "Env Key" value for the desired Mux environment.
+
+### `MUX_API_BASE_URL`
+
+**Recommended value**: `https://api.mux.com`
+
+The `MUX_API_BASE_URL` environment variable is the base url for [Mux's APIs](https://docs.mux.com/api-reference/video).  This should not need to change.
+
+### `MUX_STATS_BASE_URL`
+
+**Recommended value**: `https://stats.mux.com`
+
+The `MUX_API_BASE_URL` environment variable is the base url for [Mux's Real-Time Engagement Counts API](https://docs.mux.com/guides/data/see-how-many-people-are-watching).  This should not need to change.
+
+
+### `MUX_ACCESS_TOKEN_ID` and `MUX_SECRET_KEY`
+
+In order for Snitch to work, an Access Token set will need to be generated and scoped for **Mux Video, Read + Write** operations.  for your Mux environment.
+
+Please see our [Access token permissions
+](https://docs.mux.com/guides/video/make-api-requests#access-token-permissions) documentation for details on creating this set.
+
+### `MUX_WEBHOOK_SIGNING_SECRET`
+
+Events generated by Mux for live streams are sent to a webhook handler for Snitch.  The `MUX_WEBHOOK_SIGNING_SECRET` is used to validate the signature on the webhook events.
+
+To set up your webhook, follow the [Configuring endpoints](https://docs.mux.com/guides/video/listen-for-webhooks#configuring-endpoints) documentation and point your webhook to your instance of Snitch at the `/mux-webhook-handler` route.  The Signing key value is what is used for this environment variable.
+
+### `MUX_VIDEO_SIGNING_KEY` and `MUX_VIDEO_SIGNING_PRIVATE_KEY`
+
+Used by Snitch for setting up Mux Studio session for content creator.  
+
+To generate a new key set, navigate to the Mux Dashboard and click "Settings" > "Signing Keys".  On the Signing Keys view, click the "Generate new key" button.  Select the "Video" product and click the "Generate Signing Key" button to create a new key set.
+
+### `MUX_DATA_SIGNING_KEY` and `MUX_DATA_SIGNING_PRIVATE_KEY`
+
+Used by Snitch for retrieving watcher count from Mux.
+
+To generate a new key set, navigate to the Mux Dashboard and click "Settings" > "Signing Keys".  On the Signing Keys view, click the "Generate new key" button.  Select the "Data" product and click the "Generate Signing Key" button to create a new key set.
+
+### `NEXT_PUBLIC_PUBNUB_PUBLISH_KEY`, `NEXT_PUBLIC_PUBNUB_SUBSCRIBER_KEY` and `PUBNUB_SECRET_KEY`
+
+These values can be obtained by logging into PubNub's Dashboard and selecting the "Keyset" menu item.
+
+### `OKTA_CLIENT_ID`, `OKTA_ISSUER` and `OKTA_CLIENT_SECRET`
+
+Acquired from within Okta when setting up a new App and used to authenticate content creators.
+
+### `NEXTAUTH_SECRET`
+
+Acquired by generating a random string which is used to hash tokens.
+
+Follow the instructions defined on [NextAuth.js's documentation](https://next-auth.js.org/configuration/options#secret) for generating a value.
+
+The only recommended difference would be to generate a random hex string with the `-hex` modifier— 
+
+```sh
+% openssl rand -hex 32
+```
+
+## ❓ FAQ
+
+### Getting "The engine "node" is incompatible with this module." when deploying to Vercel
+
+If while you're deploying to Vercel, you get an error similar to the following—
+
+```
+The engine "node" is incompatible with this module. Expected version "^12.19.0 || ^14.15.0 || ^16.13.0"
+```
+
+This can be fixed by going into the Settings of your project and changing the "Node.js Version" setting to `16.x`.  Once this is done, you can attempt a Redploy for the project.
+
+### Can I disable the Okta integration?
+
+You _can_ disable Okta authentication for the Studio page.  However, it is **highly** recommended to keep it enabled or to have another method for protecting the `/studio` page from being accessed from the general public (which in turn will have a cost of goods implication).  To disable Okta, set the `OKTA_ENABLE` environment variable to `false`.
