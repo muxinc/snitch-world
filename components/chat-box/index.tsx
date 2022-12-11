@@ -1,7 +1,7 @@
 import React from 'react';
 import Pubnub from 'pubnub';
 import { PubNubProvider } from 'pubnub-react';
-import { Chat, MessageList, MessageInput, MessageRendererProps, StandardMessage } from "@pubnub/react-chat-components";
+import { Chat, MessageList, MessageInput, MessageRendererProps } from "@pubnub/react-chat-components";
 
 import usePubnubManager from '@/hooks/use-pubnub-manager';
 import style from './index.module.scss';
@@ -33,9 +33,6 @@ const ChatBox = (props: Props) => {
   }, [uuid]);
 
   const messageRenderer = (props: MessageRendererProps) => {
-    const { time, message: { publisher, message } } = props;
-    const text = (message as StandardMessage).text;
-
     return (
       <div className={style.chatMessageContainer}>
         <div>
@@ -43,10 +40,11 @@ const ChatBox = (props: Props) => {
         </div>
         <div className={style.metadataContainer}>
           <div className={style.metadataHeader}>
-            <span className={style.metadataUuid}>{publisher}</span>
-            <span className={style.metadataTime}>{time}</span>
+            <span className={style.metadataUuid}>{props.message.publisher}</span>
+            <span className={style.metadataTime}>{props.time}</span>
           </div>
-          <div>{text}</div>
+          {/* @ts-ignore - this property exists on the type */}
+          <div>{props.message.message.text}</div>
         </div>
       </div>
     );
