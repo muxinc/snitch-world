@@ -13,7 +13,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     const studio = await createStudio(livestream.id);
     console.log('studio', studio);
 
-    const token = getStudioJwt(studio.id, 'erik.pena', 'host');
+    const token = getStudioJwt(studio.id, 'Content Creator', 'host');
 
     console.log('token', token);
 
