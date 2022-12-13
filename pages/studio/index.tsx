@@ -8,7 +8,22 @@ import { StatCounts } from '@/types/mux';
 import ContextProvider from 'context/';
 import style from './index.module.css';
 
-const Studio = () => {
+interface Props {
+  enableOkta: boolean;
+}
+
+export async function getStaticProps() {
+  const enableOkta = !process.env.OKTA_ENABLE || process.env.OKTA_ENABLE.toLowerCase() === 'true';
+
+  return {
+    props: {
+      enableOkta
+    },
+  }
+}
+
+const Studio = (props:Props) => {
+  const { enableOkta } = props;
   const studioRef = React.useRef<HTMLIFrameElement>(null);
   const timerRef = React.useRef<NodeJS.Timer>();
 
@@ -72,11 +87,13 @@ const Studio = () => {
     return () => studio.off('BROADCAST_ENDED', handleOnLiveStreamEnded);
   }, [studio]);
 
-  if (status === 'loading') {
-    return (<span>Loading</span>);
-  }
-  else if (status === 'unauthenticated') {
-    signIn();
+  if(enableOkta) {
+    if (status === 'loading') {
+      return (<span>Loading</span>);
+    }
+    else if (status === 'unauthenticated') {
+      signIn();
+    }
   }
 
   if(!studioContext) return null;

@@ -28,7 +28,7 @@ const StartStreamingBox = () => {
       <CoolBox>
         <div className={style.header}>
           <div>
-            <Image src='/logo-dark.png' width={149} height={80} />
+            <Image src='/logo-dark.png' width={149} height={80} alt="Snitch" />
           </div>
           <div className={style.headerText}>
             <div>Start</div>

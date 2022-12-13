@@ -44,7 +44,7 @@ const EmojiMediaChromeControl = (props: Props) => {
         )
       }
       <button className={styles.controlContainer} onClick={toggleShowReactions}>
-        <Image src="/emoji.svg" width="24" height="24" />
+        <Image src="/emoji.svg" width="24" height="24" alt="Reactions" />
       </button>
     </div>
   );

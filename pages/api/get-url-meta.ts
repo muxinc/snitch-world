@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import got from 'got';
+import axios from 'axios';
 import Meatascraper from 'metascraper';
 import MetaTitle from 'metascraper-title';
 import MetaDescription from 'metascraper-description';
@@ -15,7 +15,10 @@ const Meta = Meatascraper([
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
   try {
-    const { body: html, url } = await got(req.body);
+    const { data, config } = await axios(req.body);
+    const html = data;
+    const url = config.url || '';
+
     const metadata = await Meta({ html, url });
 
     console.log('metadata', metadata);

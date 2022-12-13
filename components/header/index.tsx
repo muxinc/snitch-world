@@ -21,7 +21,7 @@ const Header = (props:Props) => {
     <>
       <header className={style.container}>
         <div style={{ visibility: hideLogo ? 'hidden' : 'initial' }}>
-          <Image src='/logo-light.png' width={149} height={80} />
+          <Image src='/logo-light.png' width={149} height={80} alt="Snitch" />
         </div>
         <div className={style.about}>
           <span>ABOUT:</span>
