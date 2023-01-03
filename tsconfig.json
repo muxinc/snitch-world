@@ -26,6 +26,7 @@
       "@/hooks/*": ["hooks/*"],
       "@/layout/*": ["layout/*"],
       "@/pages/*": ["pages/*"],
+      "@/public/*": ["public/*"],
       "@/services/*": ["services/*"],
       "@/styles/*": ["styles/*"],
       "@/types/*": ["types/*"],

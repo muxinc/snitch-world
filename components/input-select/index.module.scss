@@ -1,0 +1,60 @@
+@import './../../style-vars.module.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.label {
+  color: $color_white;
+  font-family: $font_primary;
+  font-size: 14px;
+  line-height: 21px;
+  width: 100%;
+}
+
+.wrapper {
+  position: relative;
+  border: $color_gray40 1px solid;
+  height: 40px;
+  border-radius: 3px;
+}
+
+.wrapper:hover {
+  border: $color_pink 1px solid;
+}
+
+.wrapper > svg {
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  pointer-events: none;
+  color: $color_white;
+}
+
+.wrapper > svg:first-child {
+  left: 10px;
+}
+
+.wrapper > svg:last-child {
+  right: 10px;
+  transform: rotate(180deg);
+}
+
+.select {
+  padding: 0 10px;
+  background-color: unset;
+  width: 100%;
+  height: 100%;
+  border:none;
+  color: $color_white;
+  appearance: none;
+  outline: none;
+  padding-right: 40px;
+}
+
+.select.ident {
+  padding-left: 40px;
+}

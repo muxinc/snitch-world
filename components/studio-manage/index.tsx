@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 import Pubnub from 'pubnub';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 
-import { StatCounts } from '@/types/mux';
 import usePubnubManager from '@/hooks/use-pubnub-manager';
 import { LivestreamStateEnum, ReactionArray } from '@/context/types';
 import Button from '@/components/button-studio';
@@ -11,6 +10,8 @@ import { ReactionPill } from '@/components/reactions';
 import CallToActionModal from '@/components/call-to-action-modal';
 
 import style from './index.module.scss';
+import Debug from './debug';
+import { useMux } from '../snitch-studio/hooks/use-mux';
 
 const ChatBoxNoSSR = dynamic(
   () => import('@/components/chat-box'),
@@ -19,11 +20,10 @@ const ChatBoxNoSSR = dynamic(
 
 interface Props {
   publishId: string;
-  statCounts?: StatCounts
-}
+};
 
 const StudioManage = (props:Props) => {
-  const { publishId, statCounts } = props;
+  const { publishId } = props;
 
   const [selectedTab, setSelectedTab] = React.useState<number>(0);
   const [state, setState] = React.useState<string>(LivestreamStateEnum.idle);
@@ -31,6 +31,8 @@ const StudioManage = (props:Props) => {
   const [reactions, setReactions] = React.useState<{[key:string]: string }>(
     ReactionArray.reduce((a, v) => ({ ...a, [v]: 0}), {})
   );
+
+  const { statCounts } = useMux();
 
   const handlePubnubOnSignal = ({ message }: Pubnub.SignalEvent) => message.state && setState(message.state);
 
@@ -69,36 +71,40 @@ const StudioManage = (props:Props) => {
           <TabList className={style.tabList}>
             <Tab selectedClassName={style.selectedTab}>Info</Tab>
             <Tab selectedClassName={style.selectedTab}>Chat</Tab>
-            {/* <Tab selectedClassName={style.selectedTab}>Polls</Tab> */}
           </TabList>
           <TabPanel
             className={selectedTab !== 0 ? style.invisibleTabPanel : ''}
             selectedClassName={style.visibleTabPanel}
           >
-            <div className={style.infoTabRow}>
-              <div className={style.infoTabCol}>
-                <div className={style.infoHeader}>Status</div>
-                <div>{state}</div>
-              </div>
-              <div className={style.infoTabCol}>
-                <div className={style.infoHeader}>Viewer count</div>
-                <div>{statCounts?.views}</div>
-              </div>
-            </div>
-            <div className={style.infoTabRow}>
-              <div className={style.infoTabCol}>
-                <div>
-                  <a href={`./w/${publishId}`} rel="noopener noreferrer" target="_blank">Player link</a>
+            <div className={style.metadataContainer}>
+              <div>
+                <div className={style.infoTabRow}>
+                  <div className={style.infoTabCol}>
+                    <div className={style.infoHeader}>Status</div>
+                    <div>{state}</div>
+                  </div>
+                  <div className={style.infoTabCol}>
+                    <div className={style.infoHeader}>Viewer count</div>
+                    <div>{statCounts?.views}</div>
+                  </div>
+                </div>
+                <div className={style.infoTabRow}>
+                  <div className={style.infoTabCol}>
+                    <div>
+                      <a href={`./w/${publishId}`} rel="noopener noreferrer" target="_blank">Player link</a>
+                    </div>
+                  </div>
+                </div>
+                <div className={style.infoTabRow}>
+                  <div className={style.infoTabCol}>
+                    <div className={style.infoHeader}>Reactions</div>
+                    <div>
+                      {pills}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={style.infoTabRow}>
-              <div className={style.infoTabCol}>
-                <div className={style.infoHeader}>Reactions</div>
-                <div>
-                  {pills}
-                </div>
-              </div>
+              <Debug />
             </div>
           </TabPanel>
           <TabPanel
@@ -107,12 +113,6 @@ const StudioManage = (props:Props) => {
           >
             <ChatBoxNoSSR channel={publishId} />
           </TabPanel>
-          {/* <TabPanel
-            className={selectedTab !== 2 ? style.invisibleTabPanel : ''}
-            selectedClassName={style.visibleTabPanel}
-          >
-            Test 3
-          </TabPanel> */}
         </Tabs>
       </div>
       <CallToActionModal

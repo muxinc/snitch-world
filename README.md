@@ -11,7 +11,7 @@ The **legacy** Snitch World is still accessible at [https://snitch.world/](https
 
 ## ✨Features
 
-- Mux Studio Embed: Used on the Studio page and that allows the **Content Creator** to go live from the browser.
+- Mux Spaces: Used on the Studio page and that allows the **Content Creator** to go live from the browser.
 - Livestream Low Latency: The livestream that Studio Embed uses is configured by Snitch to use the low latency feature.
 - Mux Player: Used on the Watch page.  Contains custom media elements for reactions, reaction presentation and call to action.  This is only rendered for the **Viewer** via the watch page.
 - Reactions: Allows **Viewers** to react to the live stream as it is occurring in order to let other **Viewers** and **Content Creator** know their sentiments of the live stream.
@@ -58,7 +58,6 @@ The `MUX_API_BASE_URL` environment variable is the base url for [Mux's APIs](htt
 **Recommended value**: `https://stats.mux.com`
 
 The `MUX_API_BASE_URL` environment variable is the base url for [Mux's Real-Time Engagement Counts API](https://docs.mux.com/guides/data/see-how-many-people-are-watching).  This should not need to change.
-
 
 ### `MUX_ACCESS_TOKEN_ID` and `MUX_SECRET_KEY`
 
