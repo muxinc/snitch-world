@@ -72,7 +72,6 @@ const Studio = () => {
     if(!audioTrack || !activeMicrophone?.deviceId) return;
 
     audioTrack && localParticipantRef.current?.unpublishTracks([audioTrack]);
-    audioTrack.stop();
 
     getMicrophoneDevice(activeMicrophone.deviceId).then(([audioLocalTrack]) => {
       publishTracks([audioLocalTrack]);
@@ -174,7 +173,7 @@ const Studio = () => {
       <ModalStudio headerText="Are you sure?" open={isEndBroadcastModalOpen} onSubmit={handleOnConfirmEndBroadcast}>
         <p>Stopping the broadcast will end the livestream.  You will not be able to restart it unless you refresh your browser.</p>
       </ModalStudio>
-      <ModalStudio headerText="Settings" open={isSettingsModalOpen} onSubmit={handleOnConfirmSettings}>
+      <ModalStudio headerText="Settings" open={isSettingsModalOpen} submitButtonText="Okay" onSubmit={handleOnConfirmSettings}>
         <Settings />
       </ModalStudio>
     </ContextProvider>
