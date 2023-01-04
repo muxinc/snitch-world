@@ -5,8 +5,6 @@ import { StatCounts } from "@/types/mux";
 
 import { MuxContext } from "./mux-context";
 
-const ID_REGEX_PATTERN = new RegExp("[a-zA-Z0-9]?");
-
 export const MuxProvider = (props:React.PropsWithChildren<Record<never, any>>) => {
   const { children } = props;
 
@@ -28,17 +26,11 @@ export const MuxProvider = (props:React.PropsWithChildren<Record<never, any>>) =
   const startBroadcast = async () => {
     const { id: spaceId } = session.space;
     const { id: broadcastId } = session.broadcast;
-    
-    if(ID_REGEX_PATTERN.test(spaceId)) {
-      throw new Error("Space ID is not an ID type");
-    }
 
-    if(ID_REGEX_PATTERN.test(broadcastId)) {
-      throw new Error("Space ID is not an ID type");
-    }
+    const url = `./api/start-broadcast?spaceId=${spaceId}&broadcastId=${broadcastId}`;
 
     try {
-      await fetch(`./api/start-broadcast?spaceId=${spaceId}&broadcastId=${broadcastId}`);
+      await fetch(url);
     } catch(error) {
       console.error(error);
     }
@@ -48,8 +40,10 @@ export const MuxProvider = (props:React.PropsWithChildren<Record<never, any>>) =
     const { id: spaceId } = session.space;
     const { id: broadcastId } = session.broadcast;
     
+    const url = `./api/stop-broadcast?spaceId=${spaceId}&broadcastId=${broadcastId}`;
+
     try {
-      await fetch(`./api/stop-broadcast?spaceId=${spaceId}&broadcastId=${broadcastId}`);
+      await fetch(url);
     } catch(error) {
       console.error(error);
     }
