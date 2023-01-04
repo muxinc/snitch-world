@@ -26,8 +26,9 @@ export const MuxProvider = (props:React.PropsWithChildren<Record<never, any>>) =
   const startBroadcast = async () => {
     const { id: spaceId } = session.space;
     const { id: broadcastId } = session.broadcast;
+    const { origin } = window;
 
-    const url = `./api/start-broadcast?spaceId=${spaceId}&broadcastId=${broadcastId}`;
+    const url = `${origin}/api/start-broadcast?spaceId=${spaceId}&broadcastId=${broadcastId}`;
 
     try {
       await fetch(url);
@@ -39,8 +40,9 @@ export const MuxProvider = (props:React.PropsWithChildren<Record<never, any>>) =
   const stopBroadcast = async () => {
     const { id: spaceId } = session.space;
     const { id: broadcastId } = session.broadcast;
+    const { origin } = window;
     
-    const url = `./api/stop-broadcast?spaceId=${spaceId}&broadcastId=${broadcastId}`;
+    const url = `${origin}/api/stop-broadcast?spaceId=${spaceId}&broadcastId=${broadcastId}`;
 
     try {
       await fetch(url);
