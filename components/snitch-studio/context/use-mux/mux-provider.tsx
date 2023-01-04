@@ -24,16 +24,22 @@ export const MuxProvider = (props:React.PropsWithChildren<Record<never, any>>) =
   }, []);
 
   const startBroadcast = async () => {
+    const { id: spaceId } = session.space;
+    const { id: broadcastId } = session.broadcast;
+
     try {
-      await fetch(`./api/start-broadcast?spaceId=${session.space.id}&broadcastId=${session.broadcast.id}`);
+      await fetch(`./api/start-broadcast?spaceId=${spaceId}&broadcastId=${broadcastId}`);
     } catch(error) {
       console.error(error);
     }
   };
 
   const stopBroadcast = async () => {
+    const { id: spaceId } = session.space;
+    const { id: broadcastId } = session.broadcast;
+    
     try {
-      await fetch(`./api/stop-broadcast?spaceId=${session.space.id}&broadcastId=${session.broadcast.id}`);
+      await fetch(`./api/stop-broadcast?spaceId=${spaceId}&broadcastId=${broadcastId}`);
     } catch(error) {
       console.error(error);
     }
