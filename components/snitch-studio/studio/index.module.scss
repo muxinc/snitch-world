@@ -1,0 +1,60 @@
+@import './../../../style-vars.module.scss';
+
+.container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.studio {
+  flex: 1;
+  border: 0;
+}
+
+.studio > IFRAME {
+  width: 100%;
+  height: 100%;
+}
+
+.studioManageContainer {
+  display: flex;
+  width: 330px;
+  min-width: 330px;
+}
+
+.bottomControls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.topControls {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $color_white;
+  padding: 10px;
+  background: none;
+  border: none;
+  width: 100px;
+
+  & > svg {
+    margin-bottom: 5px;
+  }
+}
+
+.control:hover {
+  background-color: $color_gray20;
+}
+
+.controlDisabled {
+  color: $color_red;
+}

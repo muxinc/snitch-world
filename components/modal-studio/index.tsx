@@ -10,12 +10,13 @@ interface Props {
   open: boolean;
   width?: number;
   disableSubmit?: boolean;
+  submitButtonText?: string;
   onSubmit: () => void;
   onCancel?: () => void;
 }
 
 const ModalStudio = (props: React.PropsWithChildren<Props>) => {
-  const { headerText, open, width, disableSubmit, children, onSubmit, onCancel } = props;
+  const { headerText, open, width, disableSubmit, submitButtonText = 'Submit', children, onSubmit, onCancel } = props;
 
   if(!open) return null;
 
@@ -29,7 +30,7 @@ const ModalStudio = (props: React.PropsWithChildren<Props>) => {
           </div>
           <div className={style.footer}>
             {onCancel && <Button text="Cancel" onClick={onCancel} /> }
-            <Button text="Submit" disabled={disableSubmit} onClick={onSubmit} />
+            <Button text={submitButtonText} disabled={disableSubmit} onClick={onSubmit} />
           </div>
         </div>
         <div className={style.overlay} />

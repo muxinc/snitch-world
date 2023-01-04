@@ -9,7 +9,7 @@ const client = axios.create({
 });
 
 export const createLivestream = async () => {
-  const { data: { data } } = await client.post('video/v1/live-streams', {
+  const { data } = await client.post('video/v1/live-streams', {
     max_continuous_duration: 1800 * 3,
     latency_mode: "low",
     playback_policy: "public",
@@ -21,10 +21,32 @@ export const createLivestream = async () => {
   return data;
 };
 
-export const createStudio = async (livestreamId:string) => {
-  const { data: { data } } = await client.post('video/v1/studios', {
-    live_stream_id: livestreamId
-  });
+export const createSpace = async (livestreamId:string) => {
+  const { data } = await client.post('video/v1/spaces', {});
+
+  return data;
+};
+
+export const createSpaceBroadcast = async (spaceId:string, livestreamId:string) => {
+  const { data } = await client.post(
+    `/video/v1/spaces/${spaceId}/broadcasts`,
+    {
+      live_stream_id: livestreamId,
+      layout: 'active-speaker'
+    }
+  );
+
+  return data;
+};
+
+export const startBroadcast = async (spaceId:string, broadcastId:string) => {
+  const { data } = await client.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/start`);
+
+  return data;
+};
+
+export const stopBroadcast = async (spaceId:string, broadcastId:string) => {
+  const { data } = await client.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/stop`);
 
   return data;
 };

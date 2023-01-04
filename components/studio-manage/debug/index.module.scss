@@ -1,0 +1,25 @@
+@import './../../../style-vars.module.scss';
+
+.header {
+  background: none;
+  width: 100%;
+  border: none;
+  color: $color_white;
+  text-align: left;
+  text-transform: uppercase;
+  padding: 0;
+
+  & > h3 {
+    margin: 10px 0;
+  }
+}
+
+.header:hover {
+  color: darken($color_white, 20%);
+}
+
+.container {
+  & > div {
+    margin: 8px 0;
+  }
+}

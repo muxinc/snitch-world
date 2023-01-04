@@ -20,8 +20,6 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     const url = config.url || '';
 
     const metadata = await Meta({ html, url });
-
-    console.log('metadata', metadata);
     
     res.status(200).json({ metadata });
   } catch(err) {
