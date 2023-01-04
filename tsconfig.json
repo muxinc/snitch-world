@@ -20,17 +20,38 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/context/*": ["context/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/layout/*": ["layout/*"],
-      "@/pages/*": ["pages/*"],
-      "@/public/*": ["public/*"],
-      "@/services/*": ["services/*"],
-      "@/styles/*": ["styles/*"],
-      "@/types/*": ["types/*"],
-      "@/utils/*": ["utils/*"]
-    }
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/context/*": [
+        "context/*"
+      ],
+      "@/hooks/*": [
+        "hooks/*"
+      ],
+      "@/layout/*": [
+        "layout/*"
+      ],
+      "@/pages/*": [
+        "pages/*"
+      ],
+      "@/public/*": [
+        "public/*"
+      ],
+      "@/services/*": [
+        "services/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
+      ],
+      "@/types/*": [
+        "types/*"
+      ],
+      "@/utils/*": [
+        "utils/*"
+      ]
+    },
+    "isolatedModules": true
   },
   "include": [
     "next-env.d.ts",
