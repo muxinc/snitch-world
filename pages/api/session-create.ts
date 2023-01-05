@@ -6,7 +6,7 @@ import { getSpacesJwt } from '../../utils/secrets';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { data: livestream } = await createLivestream();
-    const { data: space } = await createSpace(livestream.id);
+    const { data: space } = await createSpace();
     const { data: broadcast } = await createSpaceBroadcast(space.id, livestream.id);
     
     const jwt = getSpacesJwt(space.id);

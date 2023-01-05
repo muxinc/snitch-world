@@ -21,10 +21,30 @@ export const createLivestream = async () => {
   return data;
 };
 
-export const createSpace = async (livestreamId:string) => {
+export const deleteLivestream = async (livestreamId:string) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  await client.delete(`video/v1/live-streams/${livestreamId}`, config);
+};
+
+export const getSpace = async (spaceId:string) => {
+  const { data } = await client.get(`video/v1/spaces/${spaceId}`);
+
+  return data;
+};
+
+export const createSpace = async () => {
   const { data } = await client.post('video/v1/spaces', {});
 
   return data;
+};
+
+export const deleteSpace = async (spaceId:string) => {
+  await client.delete(`video/v1/spaces/${spaceId}`);
 };
 
 export const createSpaceBroadcast = async (spaceId:string, livestreamId:string) => {
@@ -39,8 +59,18 @@ export const createSpaceBroadcast = async (spaceId:string, livestreamId:string) 
   return data;
 };
 
+export const deleteSpaceBroadcast = async (spaceId:string, broadcastId:string) => {
+  await client.delete(`video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`);
+}
+
 export const startBroadcast = async (spaceId:string, broadcastId:string) => {
-  const { data } = await client.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/start`);
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const { data } = await client.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/start`, config);
 
   return data;
 };

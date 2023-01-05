@@ -136,8 +136,10 @@ const Studio = () => {
     setIsVideoOn(prev => !prev);
   };
 
+  const [playbackId] = session.livestream.playback_ids;
+
   return (
-    <ContextProvider publishId={session.playbackId} uuid="Content creator">
+    <ContextProvider publishId={playbackId.id} uuid="Content creator">
       <div className={styles.container}>
         <div className={styles.topControls}>
           <Button
@@ -167,7 +169,7 @@ const Studio = () => {
     
       <div className={styles.studioManageContainer}>
         { session &&
-          <StudioManage publishId={session.playbackId} />
+          <StudioManage publishId={playbackId.id} />
         }
       </div>
       <ModalStudio headerText="Are you sure?" open={isEndBroadcastModalOpen} onSubmit={handleOnConfirmEndBroadcast}>
