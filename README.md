@@ -1,22 +1,22 @@
 # 👀 Summary
 
-Snitch World is a re-imagining of a previous project version with some new features and features.  In this version, we really wanted to highlight some of Mux’s capabilities pulled together in a practical example.  Snitch is intednded to create an experience that was interactive with elements that demonstrated moments where commerce and **Viewer** interactions could take place.
+Snitch World is a re-imagining of a previous project (now deprecated).  This iteration of Snitch has been updated to showcase some use some of the new features and services from Mux.  Snitch demonstrates how to create an experience that was interactive with elements that demonstrated moments where commerce and **Viewer** interactions could take place.
 
 Snitch has 2 _main_ pages:
 
 - Studio - Used by the **Content Creator** persona to go live from the browser
 - Watch - Used by the **Viewer** persona to view a live stream
 
-The **legacy** Snitch World is still accessible at [https://snitch.world/](https://snitch.world/).  If you want to use it, you’ll need to start a livestream using a broadcasting app (like OBS).
+**NOTE**: This repo is provided purely for educational purposes and offers no formal support.
 
-## ✨Features
+## ✨ Features
 
-- Mux Spaces: Used on the Studio page and that allows the **Content Creator** to go live from the browser.
-- Livestream Low Latency: The livestream that Studio Embed uses is configured by Snitch to use the low latency feature.
-- Mux Player: Used on the Watch page.  Contains custom media elements for reactions, reaction presentation and call to action.  This is only rendered for the **Viewer** via the watch page.
+- [Mux Spaces](https://docs.mux.com/guides/video/build-real-time-video-experiences): Used on the Studio page and that allows the **Content Creator** to go live from the browser.
+- [Mux Livestream Low Latency](https://docs.mux.com/guides/video/reduce-live-stream-latency): The livestream that Studio Embed uses is configured by Snitch to use the low latency feature.
+- [Mux Player](https://docs.mux.com/guides/video/mux-player): Used on the Watch page.  Contains custom media elements for reactions, reaction presentation and call to action.  This is only rendered for the **Viewer** via the watch page.
 - Reactions: Allows **Viewers** to react to the live stream as it is occurring in order to let other **Viewers** and **Content Creator** know their sentiments of the live stream.
 - Call to Actions: The **Content Creator** has the ability to publish a Call to Action to **Viewers** with a link that displays over the player during a live stream.
-- Engagement Stat Counts: Displayed on the Studio page so that the **Content Creator** can see it.
+- [Mux Engagement Stat Counts](https://docs.mux.com/guides/data/see-how-many-people-are-watching): Displayed on the Studio page so that the **Content Creator** can see it.
 - PubNub Integration: Uses PubNub's event message bus for publishing and subscribing messages between Watch page, Watch page and Snitch backend middleware.
 
 ## 🎁 Installation
